@@ -1,0 +1,21 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Container from "@components/Container.astro";
+
+---
+<Layout title="Notes" description="Notes">
+  <Container>
+    <div class="space-y-10">
+      <div class="animate font-semibold text-black dark:text-white">
+        Notes
+      </div>
+      <!-- Coming Soon section -->
+      <div class="w-full flex flex-col items-center gap-y-3 rounded-2xl border dark:border-gray-700 border-gray-300 dark:bg-gray-800 bg-gray-100 transition-all hover:border-foreground/25 hover:shadow-sm p-5 text-center">
+        <h1 class="text-2xl font-bold text-gray-500 dark:text-gray-400">Coming Soon...</h1>
+        <p class="text-gray-500 dark:text-gray-400">
+          New and exciting projects are on the way! Stay tuned for updates.
+        </p>
+      </div>
+    </div>
+  </Container>
+</Layout>

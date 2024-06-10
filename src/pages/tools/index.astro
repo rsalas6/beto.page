@@ -1,0 +1,56 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Container from "@components/Container.astro";
+import ArrowCard from "@components/ArrowCard.astro";
+import { toolGroups } from "./data";
+
+const isProduction = import.meta.env.PROD;
+
+const filteredToolGroups = toolGroups.map(toolGroup => {
+  return {
+    ...toolGroup,
+    tools: toolGroup.tools.filter(tool => isProduction ? !tool.draft : true)
+  };
+});
+---
+
+<Layout title="Essential Tools for Developers" description="Discover essential tools to boost your productivity and streamline your workflow.">
+  <Container>
+    <h1 class="text-black dark:text-white text-5xl font-bold">Tools</h1>
+
+    <div class="mt-8 sm:mb-24 animate">
+      {filteredToolGroups.length > 0 ? (
+        <div>
+          {filteredToolGroups.map((toolGroup) => (
+            <div class="mb-10">
+              <h2 class="select-none relative h-20 pointer-events-none">
+                <span class="text-[3.2em] font-bold opacity-35 dark:opacity-60 text-red-500 absolute top-0">
+                  {toolGroup.title}
+                </span>
+              </h2>
+              <p class="mt-4 mb-6 text-lg text-gray-700 dark:text-gray-300">
+                {toolGroup.description}
+              </p>
+              <ul class="not-prose grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {toolGroup.tools.map((tool) => (
+                  <li>
+                    <ArrowCard 
+                      href={`/tools/${tool.href}`} 
+                      title={tool.title} 
+                      description={tool.description} 
+                      draft={!isProduction && tool.draft}
+                    />
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div class="py-10 opacity-50 text-lg">
+          nothing here yet.
+        </div>
+      )}
+    </div>
+  </Container>
+</Layout>

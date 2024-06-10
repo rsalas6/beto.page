@@ -1,0 +1,37 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Container from "@components/Container.astro";
+import { toolGroups } from "@/pages/tools/data";
+import type { Tool, ToolGroup } from "@types";
+import StringCounting from "@components/tools/stringCounting.vue";
+import BackToPrevious from "@components/BackToPrevious.astro";
+// Obtener la ruta de la URL actual
+const currentPath = Astro.url.pathname;
+
+// Encuentra la herramienta correspondiente
+let tool: Tool | null = null;
+
+for (const group of toolGroups) {
+  const foundTool = group.tools.find(t => `/tools/${t.href}` === currentPath);
+  if (foundTool) {
+    tool = foundTool;
+    break;
+  }
+}
+
+const title = tool ? tool.title : 'Tool';
+const description = tool ? tool.description : 'Tool description';
+---
+
+<Layout title={title} description={description}>
+  <Container>
+    <div class="animate">
+      <BackToPrevious href="/tools">Back to tools</BackToPrevious>
+      <div class="my-10">
+        <h1 class="text-black dark:text-white text-5xl font-bold">{title}</h1>
+        <p class="mt-4 mb-6 text-lg text-gray-700 dark:text-gray-300 leading-relaxed">{description}</p>
+      </div>
+      <StringCounting client:only="vue" />
+    </div>
+  </Container>
+</Layout>
