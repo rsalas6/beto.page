@@ -15,7 +15,7 @@ export const siteConfig = {
     },
     {
       name: 'LinkedIn',
-      href: 'https://linkedin.com/in/rsals6/',
+      href: 'https://linkedin.com/in/rsalas6/',
     },
     {
       name: 'Instagram',
