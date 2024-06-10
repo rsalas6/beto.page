@@ -8,7 +8,7 @@ import vue from "@astrojs/vue";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://astro-micro.vercel.app",
+  site: "https://beto.page",
   integrations: [tailwind(), sitemap(), mdx(), pagefind(), vue()],
   markdown: {
     shikiConfig: {
