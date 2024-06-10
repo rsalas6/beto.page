@@ -23,57 +23,20 @@ const projects: CollectionEntry<"projects">[] = (
 <Layout title="Roberto Salas - Software Engineer" description="Discover the professional journey, projects, and insights of Roberto Salas, a seasoned software engineer passionate about technology and automation.">
   <Container>
     <h1 class="animate font-semibold text-black dark:text-white">
-      Welcome to My Professional Hub
+      ¡Hello World!
     </h1>
     <div class="space-y-16">
-      <section>
+      <section class="animate">
         <article class="space-y-4">
           <span class="animate">
             <p>
-              I am Roberto Salas, a Software Engineer with over 10 years of experience in web application development and a passion for automating processes to enhance efficiency. I have led innovative projects for high-profile clients and continuously strive to improve technology implementations.
-            </p>
-            <p>
-              Explore my professional background, experience, and projects. Feel free to reach out if you have any questions or just want to connect.
+              I'm Roberto Salas, a dedicated Software Engineer with over a decade of professional experience. My expertise spans various domains, and recently, I have focused exclusively on web application development. My mission is to revolutionize processes through automation, driving efficiency and innovation.
             </p>
           </span>
         </article>
       </section>
 
-      <section class="animate space-y-6">
-        <div class="flex flex-wrap items-center justify-between gap-y-2">
-          <h2 class="font-semibold text-black dark:text-white">Latest Blog Posts</h2>
-          <Link href="/blog"> See all posts </Link>
-        </div>
-        <ul class="not-prose flex flex-col gap-4">
-          {
-            blog.map((post) => (
-              <li>
-                { post }
-              </li>
-            ))
-          }
-        </ul>
-      </section>
-
-      <!-- <section class="animate space-y-6">
-        <div class="flex flex-wrap items-center justify-between gap-y-2">
-          <h2 class="font-semibold text-black dark:text-white">
-            Recent Projects
-          </h2>
-          <Link href="/projects"> See all projects </Link>
-        </div>
-        <ul class="not-prose flex flex-col gap-4">
-          {
-            projects.map((project) => (
-              <li>
-                { project }
-              </li>
-            ))
-          }
-        </ul>
-      </section> -->
-
-      <section class="animate space-y-4">
+      <section class="animate">
         <h2 class="font-semibold text-black dark:text-white">Let's Connect</h2>
         <article>
           <p>
@@ -106,6 +69,44 @@ const projects: CollectionEntry<"projects">[] = (
           </li>
         </ul>
       </section>
+
+      <section class="animate space-y-6">
+        <div class="flex flex-wrap items-center justify-between gap-y-2">
+          <h2 class="font-semibold text-black dark:text-white">Latest Blog Posts</h2>
+          <Link href="/blog"> See all posts </Link>
+        </div>
+        <ul class="not-prose flex flex-col gap-4">
+          {
+            blog.map((post) => (
+              <li>
+                <ArrowCard
+                  href={`/blog/${post.slug}`}
+                  title={post.data.title}
+                  description={post.data.description}
+                />
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+
+      <!-- <section class="animate space-y-6">
+        <div class="flex flex-wrap items-center justify-between gap-y-2">
+          <h2 class="font-semibold text-black dark:text-white">
+            Recent Projects
+          </h2>
+          <Link href="/projects"> See all projects </Link>
+        </div>
+        <ul class="not-prose flex flex-col gap-4">
+          {
+            projects.map((project) => (
+              <li>
+                { project }
+              </li>
+            ))
+          }
+        </ul>
+      </section> -->
     </div>
   </Container>
 </Layout>
