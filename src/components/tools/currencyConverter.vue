@@ -48,6 +48,7 @@
 
     <div v-if="convertedAmount !== null" class="mt-4">
       <p class="text-lg text-gray-700 dark:text-gray-300">Converted Amount: {{ formattedAmount }}</p>
+      <p class="text-md text-gray-700 dark:text-gray-300">1 {{ fromCurrency }} = {{ formattedUnitRate }}</p>
     </div>
   </div>
 </template>
@@ -60,6 +61,7 @@ export default {
       fromCurrency: 'USD',
       toCurrency: 'MXN',
       convertedAmount: null,
+      unitRate: null,
       currencies: {
         USD: 'United States Dollar',
         MXN: 'Mexican Peso',
@@ -83,6 +85,14 @@ export default {
         currency: this.toCurrency,
         minimumFractionDigits: 2
       }).format(this.convertedAmount);
+    },
+    formattedUnitRate() {
+      if (this.unitRate === null) return '';
+      return new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: this.toCurrency,
+        minimumFractionDigits: 4
+      }).format(this.unitRate);
     }
   },
   methods: {
@@ -93,6 +103,7 @@ export default {
         const data = await response.json();
         const rate = data.conversion_rates[this.toCurrency];
         this.convertedAmount = this.amount * rate;
+        this.unitRate = rate;
       } catch (error) {
         console.error('Error fetching exchange rate:', error);
       }
