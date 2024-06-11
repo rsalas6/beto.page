@@ -29,27 +29,45 @@ const education = [
 const experience = [
   {
     title: 'Senior Engineer',
-    company: 'Distrito MKT',
-    period: '2021',
-    details: 'Led innovative technological projects for high-profile clients such as Nike, Farmacias Guadalajara, and Unilever. Spearheaded integrated marketing solutions, driving significant improvements in project efficiency and client satisfaction through advanced technology implementations.',
+    company: 'Distritomkt',
+    period: '01/2021',
+    location: 'CDMX, México',
+    details: [
+      'Development of projects for companies such as Nike, Kimberly Clark, Unilever, Envu, etc.',
+      'Automation of processes, improving project efficiency and client satisfaction.',
+      'Development of customized content management platforms.',
+    ],
   },
   {
     title: 'Senior Engineer',
     company: 'Autoproyecto',
-    period: '2019',
-    details: 'Directed the maintenance and development of the leading Spanish-speaking automotive site in the United States. Engineered content and functionality using PHP and Python, while integrating advertising services for major media outlets like CNN en Español, NBC, and Telemundo. Successfully enhanced site performance and user engagement.',
+    period: '05/2019',
+    location: 'California, USA',
+    details: [
+      'Directed the maintenance and development of the leading Spanish-speaking automotive site in the U.S.',
+      'Achieved a perfect score of 100 on Lighthouse for site performance, significantly enhancing user engagement.',
+      'Integrated advertising services for major media outlets like CNN en Español, NBC, and Telemundo.',
+    ],
   },
   {
     title: 'Head of Information Technology',
     company: 'Universidad Tecnológica de Huejotzingo',
     period: '2018 - 2019',
-    details: 'Responsible for directing and resolving problems with the University\'s communications and computer equipment. Some of the achievements were the initiation of rewriting the main university system with modern technologies.',
+    location: 'Puebla, México',
+    details: [
+      'Directed and resolved communication and computer equipment issues.',
+      'Initiated the rewriting of the main university system, adopting modern technologies, improving system reliability.',
+    ],
   },
   {
     title: 'Head of Information Technology',
     company: 'H. Ayuntamiento de Huejotzingo',
     period: '2014 - 2018',
-    details: 'Responsible for the maintenance of the IT equipment of more than 200 employees. Also, developed applications for internal use to automate the organization\'s processes.',
+    location: 'Puebla, México',
+    details: [
+      'Maintained IT equipment for over 80 employees.',
+      'Developed internal applications, automating processes and reducing manual workload by 50%.',
+    ],
   },
 ];
 
@@ -169,7 +187,11 @@ const skills = [
                   <small class="text-gray-500 dark:text-gray-400">{exp.period}</small>
                   <h1 class="text-lg font-medium">{exp.company}</h1>
                   <h2 class="text-gray-500 dark:text-gray-200">{exp.title}</h2>
-                  <p class="text-gray-500 dark:text-gray-400">{exp.details}</p>
+                  <ul class="list-disc pl-5 text-gray-500 dark:text-gray-400">
+                    {exp.details.map(detail => (
+                      <li>{detail}</li>
+                    ))}
+                  </ul>
                 </div>
               </div>
             </div>
