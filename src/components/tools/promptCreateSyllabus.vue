@@ -126,7 +126,7 @@ Level: ${level}
 Additional information to consider: ${additionalInfo}
 Notes: ${notes}
 ---
-Develop a syllabus for an intensive course for ${level} level students. The course should allow for one hour daily, divided between theory and practice (Monday to Friday), with the last two days (Saturday and Sunday) dedicated to practicing what was learned during the week.
+Develop a syllabus for an intensive course for ${level} level students. The course should allow for one hour daily, divided between theory and practice (Monday to Friday), with the last two days (Saturday and Sunday) dedicated to practicing what was learned during the week. Additionally, a problem should be created for the last two days to practice what was covered during the week.
 
 Theory: Provide a concise introduction to key concepts of the topic, appropriate for the students' level.
 
