@@ -49,37 +49,32 @@ export const toolGroups: ToolGroup[] = [
       },
       {
         title: 'Currency Converter',
-        description: "Converts various currencies using current exchange rates.",
+        description: 'Converts various currencies using current exchange rates.',
         href: 'currency-converter',
         draft: false
       }
     ]
   },
-  // {
-  //   title: 'Code Tools',
-  //   description: 'Tools to assist developers with various programming tasks.',
-  //   tools: [
-  //     {
-  //       title: 'Code Formatter',
-  //       description: 'Formats code in various languages like HTML, CSS, JavaScript, JSON, etc.',
-  //       href: 'code-formatter',
-  //       draft: false
-  //     },
-  //     {
-  //       title: 'Minifier',
-  //       description: 'Minifies JavaScript and CSS files to reduce size.',
-  //       href: 'minifier',
-  //       draft: true
-  //     },
-  //     {
-  //       title: 'Validator',
-  //       description: 'Validates the syntax of JSON, XML, HTML, etc.',
-  //       href: 'validator',
-  //       draft: true
-  //     }
-  //   ]
-  // }
+  {
+    title: 'Prompts Builder',
+    description: 'Tools for creating various types of prompts.',
+    tools: [
+      {
+        title: 'Create a Syllabus',
+        description: 'Generates a syllabus for a given topic over a specified number of weeks.',
+        href: 'prompt-create-syllabus',
+        draft: false
+      },
+      {
+        title: 'Algorithm Problem Prompt',
+        description: 'Generates a detailed prompt for solving an algorithmic problem.',
+        href: 'prompt-algorithm-problem',
+        draft: false
+      }
+    ]
+  },
 ];
+
 
 
 
