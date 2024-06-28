@@ -130,11 +130,11 @@ Develop a syllabus for an intensive course for ${level} level students. The cour
 
 Theory: Provide a concise introduction to key concepts of the topic, appropriate for the students' level.
 
-Practice: Apply theoretical concepts through practical exercises or small projects.
+Practice: Apply theoretical concepts through practical exercises or small projects, using real-world problems to enhance understanding and application.
 
-Integrative Project: Consolidate and apply all weekly learnings in a practical and challenging project.
+Integrative Project: Consolidate and apply all weekly learnings in a practical and challenging project, incorporating real-life scenarios to ensure relevance and practical applicability.
 
-Final Project: Create a final project demonstrating acquired understanding and skills.
+Final Project: Create a final project demonstrating acquired understanding and skills, based on real-world issues or problems, to provide a comprehensive demonstration of students' capabilities and knowledge.
 
 The goal is to complete a weekly integrative project to reinforce acquired skills and knowledge. Guidance is appreciated to structure the content, ensuring a balance between theory and practice, and that each weekly project is an effective learning milestone.
 
