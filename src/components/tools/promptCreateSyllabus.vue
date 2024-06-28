@@ -138,7 +138,7 @@ Final Project: Create a final project demonstrating acquired understanding and s
 
 The goal is to complete a weekly integrative project to reinforce acquired skills and knowledge. Guidance is appreciated to structure the content, ensuring a balance between theory and practice, and that each weekly project is an effective learning milestone.
 
-At the beginning of the syllabus, add the title and a brief course description. Create the syllabus in markdown in ${outputLanguage}. Don't forget to generate the links within the markdown for Day N, Theory, and Practice.
+At the beginning of the syllabus, add the title and a brief course description. Create the syllabus in markdown in ${outputLanguage}, also change the titles, subtitles, all to ${outputLanguage}. Don't forget to generate the links within the markdown for Day N, Theory, and Practice.
 
 Markdown format:
 
