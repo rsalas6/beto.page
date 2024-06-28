@@ -1,27 +1,11 @@
 ---
 import Layout from "@layouts/Layout.astro";
 import Container from "@components/Container.astro";
-import { toolGroups } from "@/pages/tools/data";
-import type { Tool, ToolGroup } from "@types";
 import BackToPrevious from "@components/BackToPrevious.astro";
 import PromptAlgorithmProblemComponent from "@components/tools/promptAlgorithmProblem.vue";
-// prompt-algorithm-problem
-// Obtener la ruta de la URL actual
-const currentPath = Astro.url.pathname;
 
-// Encuentra la herramienta correspondiente
-let tool: Tool | null = null;
-
-for (const group of toolGroups) {
-  const foundTool = group.tools.find(t => `/tools/${t.href}` === currentPath);
-  if (foundTool) {
-    tool = foundTool;
-    break;
-  }
-}
-
-const title = tool ? tool.title : 'Tool';
-const description = tool ? tool.description : 'Tool description';
+const title = 'Algorithm Problem Prompt';
+const description = 'Generates a detailed prompt for solving an algorithmic problem.';
 ---
 
 <Layout title={title} description={description}>

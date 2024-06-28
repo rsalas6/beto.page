@@ -18,7 +18,7 @@ export const toolGroups: ToolGroup[] = [
         draft: false
       },
       {
-        title: 'Encoding and Decoding',
+        title: 'String Encoding and Decoding',
         description: 'Tools for encoding and decoding strings in various formats.',
         href: 'string-encoding',
         draft: false

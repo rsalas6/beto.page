@@ -1,26 +1,11 @@
 ---
 import Layout from "@layouts/Layout.astro";
 import Container from "@components/Container.astro";
-import { toolGroups } from "@/pages/tools/data";
-import type { Tool } from "@types";
 import StringEncodingComponent from "@components/tools/stringEncoding.vue";
 import BackToPrevious from "@components/BackToPrevious.astro";
-// Obtener la ruta de la URL actual
-const currentPath = Astro.url.pathname;
 
-// Encuentra la herramienta correspondiente
-let tool: Tool | null = null;
-
-for (const group of toolGroups) {
-  const foundTool = group.tools.find(t => `/tools/${t.href}` === currentPath);
-  if (foundTool) {
-    tool = foundTool;
-    break;
-  }
-}
-
-const title = tool ? tool.title : 'Tool';
-const description = tool ? tool.description : 'Tool description';
+const title = 'String Encoding and Decoding';
+const description = 'Tools for encoding and decoding strings in various formats.';
 ---
 
 <Layout title={title} description={description}>

@@ -1,42 +1,11 @@
 ---
 import Layout from "@layouts/Layout.astro";
 import Container from "@components/Container.astro";
-import { toolGroups } from "@/pages/tools/data";
-import type { Tool, ToolGroup } from "@types";
 import CurrencyConverterComponent from "@components/tools/currencyConverter.vue";
 import BackToPrevious from "@components/BackToPrevious.astro";
-import { onPageLoad } from "@astro/client";
 
-// Valores por defecto
-let title = 'Tool';
-let description = 'Tool description';
-
-// Hook para ejecutar lógica al cargar la página
-onPageLoad(({ location }) => {
-  const currentPath = location.pathname;
-
-  // Log para verificar la ruta actual en el entorno de despliegue
-  console.log('Current Path:', currentPath);
-
-  // Encuentra la herramienta correspondiente
-  let tool: Tool | null = null;
-  for (const group of toolGroups) {
-    const foundTool = group.tools.find(t => `/tools/${t.href}` === currentPath);
-    if (foundTool) {
-      tool = foundTool;
-      break;
-    }
-  }
-
-  // Log para verificar si se encontró la herramienta
-  console.log('Found Tool:', tool);
-
-  // Actualiza los valores de title y description si se encontró la herramienta
-  if (tool) {
-    title = tool.title;
-    description = tool.description;
-  }
-});
+const title = 'Currency Converter';
+const description = 'Converts various currencies using current exchange rates.';
 ---
 
 <Layout title={title} description={description}>

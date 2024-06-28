@@ -1,26 +1,11 @@
 ---
 import Layout from "@layouts/Layout.astro";
 import Container from "@components/Container.astro";
-import { toolGroups } from "@/pages/tools/data";
-import type { Tool, ToolGroup } from "@types";
 import StringCountingComponent from "@components/tools/stringCounting.vue";
 import BackToPrevious from "@components/BackToPrevious.astro";
-// Obtener la ruta de la URL actual
-const currentPath = Astro.url.pathname;
 
-// Encuentra la herramienta correspondiente
-let tool: Tool | null = null;
-
-for (const group of toolGroups) {
-  const foundTool = group.tools.find(t => `/tools/${t.href}` === currentPath);
-  if (foundTool) {
-    tool = foundTool;
-    break;
-  }
-}
-
-const title = tool ? tool.title : 'Tool';
-const description = tool ? tool.description : 'Tool description';
+const title = 'String Counting';
+const description = 'Tools for counting characters and words in a string.';
 ---
 
 <Layout title={title} description={description}>
