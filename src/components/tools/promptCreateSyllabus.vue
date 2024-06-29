@@ -11,24 +11,28 @@
                 v-model.number="duration"
                 class="w-full p-4 border rounded-lg border-gray-300 dark:border-gray-600 outline-none"
                 type="number"
+                min="0"
                 placeholder="Duration (weeks)"
             />
             <input
                 v-model.number="dailyTheoryTime"
                 class="w-full p-4 border rounded-lg border-gray-300 dark:border-gray-600 outline-none"
                 type="number"
+                min="0"
                 placeholder="Daily Theory Time (minutes)"
             />
             <input
                 v-model.number="dailyPracticeTime"
                 class="w-full p-4 border rounded-lg border-gray-300 dark:border-gray-600 outline-none"
                 type="number"
+                min="0"
                 placeholder="Daily Practice Time (minutes)"
             />
             <input
                 v-model.number="finalProjectDuration"
                 class="w-full p-4 border rounded-lg border-gray-300 dark:border-gray-600 outline-none"
                 type="number"
+                min="0"
                 placeholder="Final Project Duration (weeks)"
             />
             <select
