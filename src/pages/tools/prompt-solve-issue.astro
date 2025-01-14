@@ -1,0 +1,22 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Container from "@components/Container.astro";
+import BackToPrevious from "@components/BackToPrevious.astro";
+import PromptCreateSyllabusComponent from "@components/tools/promptCreateSyllabus.vue";
+
+const title = 'Create a Syllabus';
+const description = 'Generates a syllabus for a given topic over a specified number of weeks.';
+---
+
+<Layout title={title} description={description}>
+  <Container>
+    <div class="animate">
+      <BackToPrevious href="/tools">Back to tools</BackToPrevious>
+      <div class="my-10">
+        <h1 class="text-black dark:text-white text-5xl font-bold">{title}</h1>
+        <p class="mt-4 mb-6 text-lg text-gray-700 dark:text-gray-300 leading-relaxed">{description}</p>
+      </div>
+      <PromptCreateSyllabusComponent client:only="vue" />
+    </div>
+  </Container>
+</Layout>
