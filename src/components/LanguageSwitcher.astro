@@ -11,10 +11,10 @@ const currentPath = Astro.url.pathname;
     <a
       href={switchLang(currentPath, lang as "es" | "en")}
       class:list={[
-        "px-2 py-1 rounded transition-colors",
+        "px-2 py-1 rounded transition-colors cursor-pointer",
         currentLang === lang
-          ? "bg-foreground text-background font-medium"
-          : "text-muted hover:text-foreground",
+          ? "bg-[var(--color-text)] text-[var(--color-bg)] font-medium"
+          : "text-[var(--color-text-muted)] hover:text-[var(--color-text)]",
       ]}
       aria-current={currentLang === lang ? "page" : undefined}
     >
