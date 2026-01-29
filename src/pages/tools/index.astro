@@ -9,53 +9,53 @@ import Header from "@components/Header.astro";
 
     <Header lang="es" currentPage="/tools" />
 
-    <div class="relative pt-32 pb-20 px-6">
+    <div class="relative pt-24 md:pt-32 pb-12 md:pb-20 px-4 sm:px-6">
       <div class="max-w-4xl mx-auto">
-        <div class="mb-12">
-          <p class="text-[#7cb872] text-sm uppercase tracking-[0.25em] font-medium mb-4">Utilidades</p>
-          <h1 class="font-serif text-4xl md:text-5xl mb-4">Tools</h1>
-          <p class="text-[var(--color-text-muted)]">Herramientas útiles para el día a día del desarrollador.</p>
+        <div class="mb-8 md:mb-12">
+          <p class="text-[#7cb872] text-sm uppercase tracking-[0.25em] font-medium mb-3 md:mb-4">Utilidades</p>
+          <h1 class="font-serif text-3xl sm:text-4xl md:text-5xl mb-3 md:mb-4">Tools</h1>
+          <p class="text-sm md:text-base text-[var(--color-text-muted)]">Herramientas útiles para el día a día del desarrollador.</p>
         </div>
 
-        <div class="grid gap-6">
-          <a href="/tools/string" class="group p-6 border border-[var(--color-border)] rounded-lg hover:border-[#7cb872]/50 transition-all">
-            <div class="flex items-start gap-4">
-              <div class="p-3 rounded-lg bg-[#7cb872]/10 text-[#7cb872]">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div class="grid gap-4 md:gap-6">
+          <a href="/tools/string" class="group p-4 md:p-6 border border-[var(--color-border)] rounded-lg hover:border-[#7cb872]/50 transition-all cursor-pointer">
+            <div class="flex items-start gap-3 md:gap-4">
+              <div class="p-2.5 md:p-3 rounded-lg bg-[#7cb872]/10 text-[#7cb872] flex-shrink-0">
+                <svg class="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
                 </svg>
               </div>
-              <div>
-                <h2 class="text-xl font-semibold mb-2 group-hover:text-[#7cb872] transition-colors">String Tools</h2>
-                <p class="text-[var(--color-text-muted)] text-sm">Conversión de texto, conteo de caracteres, codificación Base64, URL encoding y más.</p>
+              <div class="min-w-0">
+                <h2 class="text-lg md:text-xl font-semibold mb-1 md:mb-2 group-hover:text-[#7cb872] transition-colors">String Tools</h2>
+                <p class="text-[var(--color-text-muted)] text-xs md:text-sm">Conversión de texto, conteo de caracteres, codificación Base64, URL encoding y más.</p>
               </div>
             </div>
           </a>
 
-          <a href="/tools/qr" class="group p-6 border border-[var(--color-border)] rounded-lg hover:border-[#7cb872]/50 transition-all">
-            <div class="flex items-start gap-4">
-              <div class="p-3 rounded-lg bg-[#7cb872]/10 text-[#7cb872]">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <a href="/tools/qr" class="group p-4 md:p-6 border border-[var(--color-border)] rounded-lg hover:border-[#7cb872]/50 transition-all cursor-pointer">
+            <div class="flex items-start gap-3 md:gap-4">
+              <div class="p-2.5 md:p-3 rounded-lg bg-[#7cb872]/10 text-[#7cb872] flex-shrink-0">
+                <svg class="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z" />
                 </svg>
               </div>
-              <div>
-                <h2 class="text-xl font-semibold mb-2 group-hover:text-[#7cb872] transition-colors">QR Code Generator</h2>
-                <p class="text-[var(--color-text-muted)] text-sm">Genera códigos QR personalizados con colores, logos, múltiples estilos y formatos de exportación.</p>
+              <div class="min-w-0">
+                <h2 class="text-lg md:text-xl font-semibold mb-1 md:mb-2 group-hover:text-[#7cb872] transition-colors">QR Code Generator</h2>
+                <p class="text-[var(--color-text-muted)] text-xs md:text-sm">Genera códigos QR personalizados con colores, logos, múltiples estilos y formatos de exportación.</p>
               </div>
             </div>
           </a>
 
-          <a href="/tools/diff" class="group p-6 border border-[var(--color-border)] rounded-lg hover:border-[#7cb872]/50 transition-all">
-            <div class="flex items-start gap-4">
-              <div class="p-3 rounded-lg bg-[#7cb872]/10 text-[#7cb872]">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <a href="/tools/diff" class="group p-4 md:p-6 border border-[var(--color-border)] rounded-lg hover:border-[#7cb872]/50 transition-all cursor-pointer">
+            <div class="flex items-start gap-3 md:gap-4">
+              <div class="p-2.5 md:p-3 rounded-lg bg-[#7cb872]/10 text-[#7cb872] flex-shrink-0">
+                <svg class="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
                 </svg>
               </div>
-              <div>
-                <h2 class="text-xl font-semibold mb-2 group-hover:text-[#7cb872] transition-colors">Diff Viewer</h2>
-                <p class="text-[var(--color-text-muted)] text-sm">Compara dos textos y visualiza las diferencias por línea, palabra o carácter.</p>
+              <div class="min-w-0">
+                <h2 class="text-lg md:text-xl font-semibold mb-1 md:mb-2 group-hover:text-[#7cb872] transition-colors">Diff Viewer</h2>
+                <p class="text-[var(--color-text-muted)] text-xs md:text-sm">Compara dos textos y visualiza las diferencias por línea, palabra o carácter.</p>
               </div>
             </div>
           </a>
