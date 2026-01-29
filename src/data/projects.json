@@ -1,0 +1,78 @@
+[
+  {
+    "slug": "crm-distritomkt",
+    "title": "CRM Distrito MKT",
+    "subtitle": "Sistema de gestión empresarial",
+    "description": {
+      "es": "Sistema CRM integral desarrollado desde cero para gestionar más de 1,300 proyectos. Incluye gestión de cotizaciones, seguimiento de clientes, reportes automatizados y dashboard en tiempo real.",
+      "en": "Comprehensive CRM system built from scratch to manage over 1,300 projects. Includes quote management, client tracking, automated reports, and real-time dashboard."
+    },
+    "image": "/images/projects/crm.jpg",
+    "tags": ["Vue.js", "Node.js", "PostgreSQL", "AWS"],
+    "url": "https://crm.distritomkt.com/",
+    "year": 2023,
+    "featured": true,
+    "category": "web"
+  },
+  {
+    "slug": "autoproyecto",
+    "title": "Autoproyecto",
+    "subtitle": "Portal automotriz #1 en español",
+    "description": {
+      "es": "El sitio automotriz en español más grande de Estados Unidos. Migración completa a AWS, optimización que logró score perfecto de 100 en Lighthouse, manejando +5M de visitas mensuales.",
+      "en": "The largest Spanish-language automotive site in the United States. Complete AWS migration, optimization achieving perfect Lighthouse score of 100, handling 5M+ monthly visits."
+    },
+    "image": "/images/projects/autoproyecto.jpg",
+    "tags": ["PHP", "AWS", "Redis", "CloudFront"],
+    "url": "https://autoproyecto.com/",
+    "year": 2020,
+    "featured": true,
+    "category": "web"
+  },
+  {
+    "slug": "intruo",
+    "title": "Intruo",
+    "subtitle": "Security reconnaissance tool",
+    "description": {
+      "es": "Herramienta open source para descubrimiento de información pública y vulnerabilidades en sitios web. Automatiza el proceso de reconocimiento en auditorías de seguridad.",
+      "en": "Open source tool for discovering public information and vulnerabilities on websites. Automates the reconnaissance process in security audits."
+    },
+    "image": "/images/projects/intruo.jpg",
+    "tags": ["Python", "Security", "CLI", "Open Source"],
+    "url": "https://github.com/rsalas6/intruo",
+    "github": "https://github.com/rsalas6/intruo",
+    "year": 2022,
+    "featured": true,
+    "category": "security"
+  },
+  {
+    "slug": "llaves-escondidas",
+    "title": "Las Llaves Escondidas",
+    "subtitle": "Campaña promocional Colgate",
+    "description": {
+      "es": "Plataforma de concurso para Colgate y Farmacias Guadalajara. Sistema de registro de compras, validación de tickets y sorteos automáticos con premios incluyendo un auto.",
+      "en": "Contest platform for Colgate and Farmacias Guadalajara. Purchase registration system, ticket validation, and automatic raffles with prizes including a car."
+    },
+    "image": "/images/projects/llaves.jpg",
+    "tags": ["Vue.js", "Laravel", "MySQL", "AWS"],
+    "url": null,
+    "year": 2021,
+    "featured": false,
+    "category": "web"
+  },
+  {
+    "slug": "training-platform",
+    "title": "Plataforma de Capacitación",
+    "subtitle": "E-learning para retail",
+    "description": {
+      "es": "Sistema de capacitación en línea para más de 50 tiendas retail a nivel nacional. Incluye cursos interactivos, evaluaciones, certificados y reportes de progreso.",
+      "en": "Online training system for 50+ retail stores nationwide. Includes interactive courses, assessments, certificates, and progress reports."
+    },
+    "image": "/images/projects/training.jpg",
+    "tags": ["Nuxt.js", "Node.js", "MongoDB", "Video Streaming"],
+    "url": null,
+    "year": 2022,
+    "featured": false,
+    "category": "web"
+  }
+]

@@ -1,18 +1,31 @@
-import tailwind from "@astrojs/tailwind";
+// @ts-check
 import { defineConfig } from "astro/config";
+import tailwindcss from "@tailwindcss/vite";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
-import pagefind from "astro-pagefind";
 
-import vue from "@astrojs/vue";
-
-// https://astro.build/config
 export default defineConfig({
   site: "https://beto.page",
-  integrations: [tailwind(), sitemap(), mdx(), pagefind(), vue()],
+  i18n: {
+    defaultLocale: "es",
+    locales: ["es", "en"],
+    routing: {
+      prefixDefaultLocale: false,
+    },
+  },
+  integrations: [mdx(), sitemap()],
+  vite: {
+    plugins: [tailwindcss()],
+    server: {
+      watch: {
+        usePolling: true,
+        interval: 1000,
+      },
+    },
+  },
   markdown: {
     shikiConfig: {
-      theme: "css-variables"
-    }
-  }
+      theme: "github-dark",
+    },
+  },
 });

@@ -1,42 +1,70 @@
 ---
-import Container from "@components/Container.astro";
-import Link from "@components/Link.astro";
+import ThemeToggle from "./ThemeToggle.astro";
+
+interface Props {
+  lang?: "es" | "en";
+  currentPage?: string;
+}
+
+const { lang = "es", currentPage = "" } = Astro.props;
+
+const isSpanish = lang === "es";
+
+const navItems = isSpanish
+  ? [
+      { href: "/", label: "Inicio" },
+      { href: "/projects", label: "Proyectos" },
+      { href: "/tools", label: "Tools" },
+      { href: "/resume", label: "CV" },
+    ]
+  : [
+      { href: "/en", label: "Home" },
+      { href: "/en/projects", label: "Projects" },
+      { href: "/en/tools", label: "Tools" },
+      { href: "/en/resume", label: "Resume" },
+    ];
+
+const serviciosLabel = isSpanish ? "Servicios" : "Services";
+const langSwitchHref = isSpanish
+  ? `/en${currentPage}`
+  : currentPage.replace(/^\/en/, '') || "/";
+const langSwitchLabel = isSpanish ? "EN" : "ES";
 ---
 
-<header>
-  <Container>
-    <div class="flex flex-wrap justify-between gap-y-2">
-      <Link href="/" underline={false}>
-        <div class="font-bold">
-          beto
-        </div>
-      </Link>
-      <nav class="flex items-center gap-4 text-sm">
-        <Link href="/">Home</Link>
-        <Link href="/resume">Resume</Link>
-        <Link href="/blog">Blog</Link>
-        <Link href="/tools">Tools</Link>
-        <Link href="/projects">Projects</Link>
-        <Link href="/notes">Notes</Link>
-        <button
-          id="magnifying-glass"
-          aria-label="Search"
-          class=""
+<header class="fixed top-0 left-0 right-0 z-50 bg-[var(--color-bg)]/90 backdrop-blur-sm border-b border-[var(--color-border)]">
+  <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href={isSpanish ? "/" : "/en"} class="font-serif text-2xl italic tracking-tight hover:text-[#7cb872] transition-colors">
+      rs<span class="text-[#7cb872]">.</span>
+    </a>
+    <nav class="flex items-center gap-6">
+      {navItems.map((item) => (
+        <a
+          href={item.href}
+          class={`text-sm tracking-wide transition-colors ${
+            currentPage === item.href || (currentPage === "" && item.href === "/" || item.href === "/en")
+              ? "text-[var(--color-text)]"
+              : "text-[var(--color-text-muted)] hover:text-[var(--color-text)]"
+          }`}
         >
-          <svg
-            height="16"
-            stroke-linejoin="round"
-            viewBox="0 0 16 16"
-            width="16"
-            style="color: currentcolor;"
-            ><path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
-              d="M3.5 7C3.5 5.067 5.067 3.5 7 3.5C8.933 3.5 10.5 5.067 10.5 7C10.5 7.88461 10.1718 8.69256 9.63058 9.30876L9.30876 9.63058C8.69256 10.1718 7.88461 10.5 7 10.5C5.067 10.5 3.5 8.933 3.5 7ZM9.96544 11.0261C9.13578 11.6382 8.11014 12 7 12C4.23858 12 2 9.76142 2 7C2 4.23858 4.23858 2 7 2C9.76142 2 12 4.23858 12 7C12 8.11014 11.6382 9.13578 11.0261 9.96544L14.0303 12.9697L14.5607 13.5L13.5 14.5607L12.9697 14.0303L9.96544 11.0261Z"
-              fill="currentColor"></path></svg
-          >
-        </button>
-      </nav>
-    </div>
-  </Container>
+          {item.label}
+        </a>
+      ))}
+      <a href="https://saltek.mx" target="_blank" class="text-sm tracking-wide text-[#7cb872] hover:underline transition-colors">
+        {serviciosLabel}
+      </a>
+      <ThemeToggle />
+      <a
+        href={langSwitchHref}
+        class="text-xs px-3 py-1.5 rounded-full border border-[var(--color-border)] text-[var(--color-text-muted)] hover:text-[var(--color-text)] hover:border-[var(--color-text-subtle)] transition-all"
+      >
+        {langSwitchLabel}
+      </a>
+    </nav>
+  </div>
 </header>
+
+<style>
+  .font-serif {
+    font-family: 'Playfair Display', Georgia, serif;
+  }
+</style>

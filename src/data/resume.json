@@ -1,0 +1,212 @@
+{
+  "personal": {
+    "name": "Roberto Salas Hernández",
+    "title": {
+      "es": "Ingeniero de Software",
+      "en": "Software Engineer"
+    },
+    "email": "hi@beto.page",
+    "location": "México",
+    "website": "https://beto.page",
+    "available": true,
+    "social": {
+      "linkedin": "https://linkedin.com/in/rsalas6/",
+      "github": "https://github.com/rsalas6",
+      "x": "https://x.com/rsalas_6"
+    }
+  },
+  "about": {
+    "es": "Ingeniero de software con más de diez años de experiencia desarrollando aplicaciones web escalables y sistemas de automatización. Especializado en arquitectura de software, optimización de procesos y soluciones cloud. He colaborado con empresas internacionales como Nike, Kimberly Clark y Unilever, así como en proyectos de anotación de datos para líderes en AI como Meta, Google y OpenAI.",
+    "en": "Software engineer with over ten years of experience developing scalable web applications and automation systems. Specialized in software architecture, process optimization, and cloud solutions. I have collaborated with international companies such as Nike, Kimberly Clark, and Unilever, as well as on data annotation projects for AI leaders like Meta, Google, and OpenAI."
+  },
+  "experience": [
+    {
+      "title": {
+        "es": "Evaluador de Modelos AI/ML (RLHF)",
+        "en": "AI/ML Model Evaluator (RLHF)"
+      },
+      "company": "Scale AI, Outlier, Micro1, Revelo",
+      "period": "09/2024 - Present",
+      "location": "Remoto",
+      "details": {
+        "es": [
+          "Colaboración con múltiples empresas líderes en AI: Scale AI, Outlier, Micro1, Revelo",
+          "Evaluación de más de 1,500 tareas en proyectos de ML/AI, enfocado en RLHF",
+          "Evaluaciones de calidad de código asegurando mejores prácticas",
+          "Desarrollo de pruebas unitarias para verificar precisión de modelos",
+          "Retroalimentación para mejorar rendimiento y confiabilidad de modelos"
+        ],
+        "en": [
+          "Collaboration with multiple leading AI companies: Scale AI, Outlier, Micro1, Revelo",
+          "Evaluated over 1,500 tasks across ML/AI projects, focusing on RLHF",
+          "Conducted code quality assessments ensuring best practices",
+          "Developed unit tests to verify model accuracy across scenarios",
+          "Provided feedback to improve model performance and reliability"
+        ]
+      }
+    },
+    {
+      "title": {
+        "es": "Desarrollador Full Stack",
+        "en": "Full Stack Developer"
+      },
+      "company": "Distritomkt",
+      "period": "01/2021 - Present",
+      "location": "CDMX, México",
+      "details": {
+        "es": [
+          "Desarrollo de más de 15 aplicaciones headless para Nike, Kimberly Clark, Unilever, Envu",
+          "Migración de funciones administrativas de Monday.com a CRM personalizado, gestionando más de 1,300 proyectos",
+          "Creación de plataforma de capacitación para más de 50 tiendas retail"
+        ],
+        "en": [
+          "Developed over 15 headless applications for Nike, Kimberly Clark, Unilever, Envu",
+          "Transitioned admin functions from Monday.com to custom CRM, managing 1,300+ projects",
+          "Created training platform for 50+ retail stores nationwide"
+        ]
+      }
+    },
+    {
+      "title": {
+        "es": "Desarrollador Full Stack",
+        "en": "Full Stack Developer"
+      },
+      "company": "Autoproyecto",
+      "period": "05/2019 - 12/2020",
+      "location": "California, USA (Remote)",
+      "details": {
+        "es": [
+          "Migración del sitio automotriz en español líder en EE.UU. a AWS, manejando 5M+ visitas/mes",
+          "Logro de puntuación perfecta de 100 en Lighthouse",
+          "Desarrollo de sistema de gestión de archivos en AWS S3",
+          "Integración de 30+ servicios incluyendo Toyota y NBC",
+          "Mantenimiento de 99% de uptime"
+        ],
+        "en": [
+          "Migrated leading Spanish automotive site in US to AWS, handling 5M+ visits/month",
+          "Achieved perfect Lighthouse score of 100",
+          "Developed file management system on AWS S3",
+          "Integrated 30+ services including Toyota and NBC",
+          "Maintained 99% uptime"
+        ]
+      }
+    },
+    {
+      "title": {
+        "es": "Jefe de Tecnologías de la Información",
+        "en": "Head of Information Technology"
+      },
+      "company": "Universidad Tecnológica de Huejotzingo",
+      "period": "2018 - 2019",
+      "location": "Puebla, México",
+      "details": {
+        "es": [
+          "Dirección y resolución de problemas de comunicación y equipos de cómputo",
+          "Inicio de reescritura del sistema universitario principal con tecnologías modernas"
+        ],
+        "en": [
+          "Directed and resolved communication and computer equipment issues",
+          "Initiated rewriting of main university system with modern technologies"
+        ]
+      }
+    }
+  ],
+  "education": [
+    {
+      "title": {
+        "es": "Licenciatura en Ingeniería en Ciencias de la Computación",
+        "en": "Bachelor's Degree in Computing Science Engineering"
+      },
+      "institution": "Benemérita Universidad Autónoma de Puebla",
+      "period": "2009 - 2014",
+      "credential": "PL. 11839022",
+      "type": "bachelor"
+    },
+    {
+      "title": {
+        "es": "Maestría en Seguridad Informática",
+        "en": "Master's Degree in Informatic Security"
+      },
+      "institution": "Universidad Internacional de La Rioja",
+      "period": "2020 - 2022",
+      "credential": "PL. 13012554",
+      "type": "master"
+    },
+    {
+      "title": {
+        "es": "Maestría en Ciencia de Datos",
+        "en": "Master's Degree in Data Science"
+      },
+      "institution": "Universidad Tecnológica en Línea",
+      "period": "2020 - 2021",
+      "credential": "PL. 12812495",
+      "type": "master"
+    }
+  ],
+  "projects": [
+    {
+      "title": "CRM Distrito MKT",
+      "description": {
+        "es": "Sistema CRM integral para gestión de proyectos, cotizaciones y procesos administrativos",
+        "en": "Comprehensive CRM system for project management, quotations, and administrative processes"
+      },
+      "url": "https://crm.distritomkt.com/",
+      "image": "/images/projects/crm-distritomkt.png"
+    },
+    {
+      "title": "Intruo",
+      "description": {
+        "es": "Herramienta open source para descubrir y reportar información pública y vulnerabilidades de sitios web",
+        "en": "Open source tool for discovering and reporting public information and vulnerabilities of websites"
+      },
+      "url": "https://github.com/rsalas6/intruo",
+      "image": "/images/projects/intruo.png"
+    },
+    {
+      "title": "Autoproyecto",
+      "description": {
+        "es": "El sitio en español más grande de EE.UU., optimizado para ser el más rápido de la competencia",
+        "en": "The largest Spanish-language site in the US, optimized to be the fastest among competitors"
+      },
+      "url": "https://autoproyecto.com/",
+      "image": "/images/projects/autoproyecto.png"
+    }
+  ],
+  "skills": [
+    {
+      "label": {
+        "es": "Lenguajes",
+        "en": "Languages"
+      },
+      "items": ["Python", "JavaScript/TypeScript", "PHP", "Bash", "Go", "SQL"]
+    },
+    {
+      "label": {
+        "es": "Frontend",
+        "en": "Frontend"
+      },
+      "items": ["Vue.js", "Nuxt", "Astro", "React", "Tailwind CSS"]
+    },
+    {
+      "label": {
+        "es": "Backend",
+        "en": "Backend"
+      },
+      "items": ["Node.js", "FastAPI", "Django", "Flask", "Express"]
+    },
+    {
+      "label": {
+        "es": "Herramientas",
+        "en": "Tools"
+      },
+      "items": ["Git", "Docker", "Kubernetes", "AWS", "GCP", "Linux"]
+    },
+    {
+      "label": {
+        "es": "Intereses",
+        "en": "Interests"
+      },
+      "items": ["Cybersecurity", "Data Science", "AI/ML", "API Design"]
+    }
+  ]
+}

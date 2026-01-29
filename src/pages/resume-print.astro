@@ -1,0 +1,363 @@
+---
+import resumeData from "@data/resume.json";
+
+const { personal, about, experience, education, skills } = resumeData;
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CV - {personal.name}</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 9.5pt;
+      line-height: 1.5;
+      color: #1a1a1a;
+      background: #fff;
+      padding: 0.2in 0.3in;
+      max-width: 8.5in;
+      margin: 0 auto;
+    }
+
+    a {
+      color: #059669;
+      text-decoration: none;
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 2px solid #059669;
+    }
+
+    .header h1 {
+      font-size: 24pt;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 4px;
+      color: #111;
+    }
+
+    .header .title {
+      font-size: 11pt;
+      color: #059669;
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+
+    .header .contact {
+      font-size: 9pt;
+      color: #404040;
+    }
+
+    .header .contact a {
+      color: #404040;
+    }
+
+    .header .separator {
+      color: #d1d5db;
+      margin: 0 8px;
+    }
+
+    /* Section */
+    .section {
+      margin-bottom: 18px;
+      page-break-inside: avoid;
+    }
+
+    .section-title {
+      font-size: 10pt;
+      font-weight: 700;
+      color: #059669;
+      margin-bottom: 10px;
+      padding-bottom: 4px;
+      border-bottom: 1px solid #e5e5e5;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
+    /* About */
+    .about {
+      font-size: 9.5pt;
+      color: #404040;
+      line-height: 1.6;
+      text-align: justify;
+    }
+
+    /* Experience */
+    .experience-item {
+      margin-bottom: 14px;
+      page-break-inside: avoid;
+    }
+
+    .experience-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 2px;
+    }
+
+    .experience-title {
+      font-size: 10.5pt;
+      font-weight: 600;
+      color: #111;
+    }
+
+    .experience-period {
+      font-size: 8.5pt;
+      color: #059669;
+      font-weight: 500;
+    }
+
+    .experience-company {
+      font-size: 9.5pt;
+      color: #059669;
+      font-weight: 400;
+      margin-bottom: 1px;
+    }
+
+    .experience-location {
+      font-size: 8.5pt;
+      color: #737373;
+      margin-bottom: 4px;
+    }
+
+    .experience-details {
+      list-style: none;
+      font-size: 9pt;
+      color: #404040;
+      padding-left: 0;
+    }
+
+    .experience-details li {
+      position: relative;
+      padding-left: 12px;
+      margin-bottom: 2px;
+      line-height: 1.4;
+    }
+
+    .experience-details li::before {
+      content: "-";
+      position: absolute;
+      left: 0;
+      color: #059669;
+      font-weight: bold;
+    }
+
+    /* Education */
+    .education-bachelor {
+      margin-bottom: 12px;
+      width: 100%;
+    }
+
+    .education-grid-masters {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .education-item {
+      padding: 10px 12px;
+      border-left: 3px solid #059669;
+      background: #fafafa;
+      page-break-inside: avoid;
+    }
+
+    .education-period {
+      font-size: 7.5pt;
+      color: #737373;
+      margin-bottom: 2px;
+    }
+
+    .education-title {
+      font-size: 9pt;
+      font-weight: 600;
+      color: #111;
+      margin-bottom: 2px;
+      line-height: 1.3;
+    }
+
+    .education-institution {
+      font-size: 8pt;
+      color: #059669;
+    }
+
+    /* Skills */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+    }
+
+    .skill-category {
+      page-break-inside: avoid;
+    }
+
+    .skill-label {
+      font-size: 7.5pt;
+      font-weight: 600;
+      color: #059669;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+    }
+
+    .skill-items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+
+    .skill-item {
+      font-size: 7.5pt;
+      padding: 3px 8px;
+      border: 1px solid #e5e5e5;
+      border-radius: 3px;
+      color: #404040;
+      background: #fafafa;
+    }
+
+    /* Icons */
+    .contact-icon {
+      color: #059669;
+      margin-right: 4px;
+      font-size: 9pt;
+    }
+
+    .contact-item {
+      display: inline-flex;
+      align-items: center;
+    }
+
+    /* Print styles */
+    @media print {
+      body {
+        padding: 0.2in 0.3in;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      .section {
+        page-break-inside: avoid;
+      }
+
+      .experience-item {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <h1>{personal.name}</h1>
+    <p class="title">{personal.title.es}</p>
+    <div class="contact">
+      <span class="contact-item">
+        <i class="fa-solid fa-envelope contact-icon"></i>
+        <a href={`mailto:${personal.email}`}>{personal.email}</a>
+      </span>
+      <span class="separator">|</span>
+      <span class="contact-item">
+        <i class="fa-solid fa-location-dot contact-icon"></i>
+        <span>{personal.location}</span>
+      </span>
+      <span class="separator">|</span>
+      <span class="contact-item">
+        <i class="fa-solid fa-globe contact-icon"></i>
+        <a href={personal.website}>{personal.website.replace('https://', '')}</a>
+      </span>
+      <span class="separator">|</span>
+      <span class="contact-item">
+        <i class="fa-brands fa-linkedin contact-icon"></i>
+        <a href={personal.social.linkedin}>linkedin.com/in/rsalas6</a>
+      </span>
+      <span class="separator">|</span>
+      <span class="contact-item">
+        <i class="fa-brands fa-github contact-icon"></i>
+        <a href={personal.social.github}>github.com/rsalas6</a>
+      </span>
+    </div>
+  </header>
+
+  <!-- Profile -->
+  <section class="section">
+    <h2 class="section-title">Perfil</h2>
+    <p class="about">{about.es}</p>
+  </section>
+
+  <!-- Experience -->
+  <section class="section">
+    <h2 class="section-title">Experiencia Profesional</h2>
+    {experience.map((exp) => (
+      <div class="experience-item">
+        <div class="experience-header">
+          <span class="experience-title">{exp.title.es}</span>
+          <span class="experience-period">{exp.period.replace('Present', 'Presente')}</span>
+        </div>
+        <div class="experience-company">{exp.company}</div>
+        <div class="experience-location">{exp.location}</div>
+        <ul class="experience-details">
+          {exp.details.es.map((detail: string) => (
+            <li>{detail}</li>
+          ))}
+        </ul>
+      </div>
+    ))}
+  </section>
+
+  <!-- Education -->
+  <section class="section">
+    <h2 class="section-title">Educación</h2>
+    <!-- Bachelor's degree - full width -->
+    {education.filter(edu => edu.type === 'bachelor').map((edu) => (
+      <div class="education-item education-bachelor">
+        <div class="education-period">{edu.period}</div>
+        <div class="education-title">{edu.title.es}</div>
+        <div class="education-institution">{edu.institution}</div>
+      </div>
+    ))}
+    <!-- Master's degrees - 2 columns -->
+    <div class="education-grid-masters">
+      {education.filter(edu => edu.type === 'master').map((edu) => (
+        <div class="education-item">
+          <div class="education-period">{edu.period}</div>
+          <div class="education-title">{edu.title.es}</div>
+          <div class="education-institution">{edu.institution}</div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section class="section">
+    <h2 class="section-title">Habilidades</h2>
+    <div class="skills-grid">
+      {skills.map((skill) => (
+        <div class="skill-category">
+          <div class="skill-label">{skill.label.es}</div>
+          <div class="skill-items">
+            {skill.items.map((item: string) => (
+              <span class="skill-item">{item}</span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+</body>
+</html>

@@ -1,25 +1,51 @@
-# build output
-dist/
-# generated types
-.astro/
-.ignore/
-
-# dependencies
+# Dependencies
 node_modules/
 
-# logs
+# Build output
+dist/
+.output/
+
+# Astro
+.astro/
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# IDE
+.vscode/*
+!.vscode/extensions.json
+!.vscode/launch.json
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-pnpm-debug.log*
 
+# Claude & AI
+.claude/
+.agents/
 
-# environment variables
-.env
-.env.production
+# Cache
+.cache/
+.parcel-cache/
 
-# macOS-specific files
-.DS_Store
+# Testing
+coverage/
 
-# jetbrains setting folder
-.idea/
+# Misc
+*.local
+
+# Claude
+.claude/
+.agents/

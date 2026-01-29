@@ -6,13 +6,13 @@ import resumeData from "@data/resume.json";
 const { personal, about, experience, education, skills } = resumeData;
 ---
 
-<Layout title={`CV - ${personal.name}`} description={about.es}>
+<Layout title={`Resume - ${personal.name}`} description={about.en}>
   <main class="min-h-screen">
 
     <!-- Subtle texture overlay -->
     <div class="fixed inset-0 pointer-events-none opacity-10 dark:opacity-20" style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noise%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noise)%22 opacity=%220.06%22/%3E%3C/svg%3E');"></div>
 
-    <Header lang="es" currentPage="/resume" />
+    <Header lang="en" currentPage="/en/resume" />
 
     <!-- Content -->
     <div class="relative pt-32 pb-20 px-6">
@@ -21,7 +21,7 @@ const { personal, about, experience, education, skills } = resumeData;
         <!-- Header Section -->
         <div class="text-center mb-16">
           <h1 class="font-serif text-4xl md:text-5xl mb-4">{personal.name}</h1>
-          <p class="text-[#7cb872] text-lg mb-6">{personal.title.es}</p>
+          <p class="text-[#7cb872] text-lg mb-6">{personal.title.en}</p>
 
           <div class="flex flex-wrap justify-center gap-6 text-sm text-[var(--color-text-muted)] mb-8">
             <a href={`mailto:${personal.email}`} class="flex items-center gap-2 hover:text-[#7cb872] transition-colors">
@@ -43,21 +43,21 @@ const { personal, about, experience, education, skills } = resumeData;
           </div>
 
           <a
-            href="/cv.pdf"
-            download="cv-roberto-salas.pdf"
+            href="/cv-en.pdf"
+            download="cv-roberto-salas-en.pdf"
             class="inline-flex items-center gap-2 px-6 py-3 bg-[#7cb872] text-black rounded-sm text-sm font-medium hover:bg-[#6aa862] transition-colors"
           >
             <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
             </svg>
-            Descargar PDF
+            Download PDF
           </a>
         </div>
 
         <!-- About -->
         <section class="mb-20">
           <p class="text-lg text-[var(--color-text-muted)] leading-relaxed max-w-3xl mx-auto text-center">
-            {about.es}
+            {about.en}
           </p>
         </section>
 
@@ -67,8 +67,8 @@ const { personal, about, experience, education, skills } = resumeData;
         <!-- Experience Timeline -->
         <section class="mb-20">
           <div class="mb-12">
-            <p class="text-[#7cb872] text-sm uppercase tracking-[0.25em] font-medium mb-4">Trayectoria</p>
-            <h2 class="font-serif text-3xl md:text-4xl">Experiencia Profesional</h2>
+            <p class="text-[#7cb872] text-sm uppercase tracking-[0.25em] font-medium mb-4">Career Path</p>
+            <h2 class="font-serif text-3xl md:text-4xl">Professional Experience</h2>
           </div>
 
           <div class="relative">
@@ -90,12 +90,12 @@ const { personal, about, experience, education, skills } = resumeData;
                       </span>
                     </div>
 
-                    <h3 class="font-serif text-xl md:text-2xl">{exp.title.es}</h3>
+                    <h3 class="font-serif text-xl md:text-2xl">{exp.title.en}</h3>
                     <p class="text-[#7cb872]">{exp.company}</p>
                     <p class="text-[var(--color-text-subtle)] text-sm">{exp.location}</p>
 
                     <ul class="space-y-2 text-[var(--color-text-muted)]">
-                      {exp.details.es.map((detail: string) => (
+                      {exp.details.en.map((detail: string) => (
                         <li class="flex items-start gap-3">
                           <span class="text-[#7cb872] mt-1.5">›</span>
                           <span>{detail}</span>
@@ -115,15 +115,15 @@ const { personal, about, experience, education, skills } = resumeData;
         <!-- Education -->
         <section class="mb-20">
           <div class="mb-12">
-            <p class="text-[#7cb872] text-sm uppercase tracking-[0.25em] font-medium mb-4">Formación</p>
-            <h2 class="font-serif text-3xl md:text-4xl">Educación</h2>
+            <p class="text-[#7cb872] text-sm uppercase tracking-[0.25em] font-medium mb-4">Background</p>
+            <h2 class="font-serif text-3xl md:text-4xl">Education</h2>
           </div>
 
           <div class="grid md:grid-cols-2 gap-8">
             {education.map((edu) => (
               <div class="p-6 border border-[var(--color-border)] rounded-sm hover:border-[#7cb872]/30 transition-colors">
                 <p class="text-[var(--color-text-subtle)] text-sm mb-2">{edu.period}</p>
-                <h3 class="font-serif text-xl mb-2">{edu.title.es}</h3>
+                <h3 class="font-serif text-xl mb-2">{edu.title.en}</h3>
                 <p class="text-[#7cb872] text-sm mb-1">{edu.institution}</p>
                 <p class="text-[var(--color-text-subtle)] text-xs">{edu.credential}</p>
               </div>
@@ -137,14 +137,14 @@ const { personal, about, experience, education, skills } = resumeData;
         <!-- Skills -->
         <section class="mb-20">
           <div class="mb-12">
-            <p class="text-[#7cb872] text-sm uppercase tracking-[0.25em] font-medium mb-4">Tecnologías</p>
-            <h2 class="font-serif text-3xl md:text-4xl">Habilidades</h2>
+            <p class="text-[#7cb872] text-sm uppercase tracking-[0.25em] font-medium mb-4">Technologies</p>
+            <h2 class="font-serif text-3xl md:text-4xl">Skills</h2>
           </div>
 
           <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {skills.map((skill) => (
               <div>
-                <h3 class="text-[var(--color-text-subtle)] text-sm uppercase tracking-wider mb-4">{skill.label.es}</h3>
+                <h3 class="text-[var(--color-text-subtle)] text-sm uppercase tracking-wider mb-4">{skill.label.en}</h3>
                 <div class="flex flex-wrap gap-2">
                   {skill.items.map((item: string) => (
                     <span class="px-3 py-1.5 text-sm rounded-full border border-[var(--color-border)] text-[var(--color-text-muted)] hover:border-[#7cb872]/30 hover:text-[var(--color-text)] transition-colors">
@@ -159,12 +159,12 @@ const { personal, about, experience, education, skills } = resumeData;
 
         <!-- CTA -->
         <section class="text-center py-16 border-t border-[var(--color-border)]">
-          <p class="text-[var(--color-text-muted)] mb-6">¿Interesado en trabajar juntos?</p>
+          <p class="text-[var(--color-text-muted)] mb-6">Interested in working together?</p>
           <a
             href={`mailto:${personal.email}`}
             class="inline-flex items-center gap-2 px-8 py-4 border border-[var(--color-border)] rounded-sm text-[var(--color-text)] hover:border-[#7cb872] hover:text-[#7cb872] transition-colors"
           >
-            Escríbeme
+            Get in touch
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
@@ -181,7 +181,7 @@ const { personal, about, experience, education, skills } = resumeData;
           © {new Date().getFullYear()} Roberto Salas
         </p>
         <div class="flex items-center gap-6 text-sm text-[var(--color-text-subtle)]">
-          <a href="/en/resume" class="hover:text-[var(--color-text)] transition-colors">English</a>
+          <a href="/resume" class="hover:text-[var(--color-text)] transition-colors">Español</a>
           <span>·</span>
           <a href="https://saltek.mx" target="_blank" class="hover:text-[#7cb872] transition-colors">saltek.mx</a>
         </div>

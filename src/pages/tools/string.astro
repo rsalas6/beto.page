@@ -1,0 +1,295 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Header from "@components/Header.astro";
+---
+
+<Layout title="String Tools - Roberto Salas" description="Herramientas para manipular texto">
+  <main class="min-h-screen">
+    <div class="fixed inset-0 pointer-events-none opacity-10 dark:opacity-20" style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noise%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noise)%22 opacity=%220.06%22/%3E%3C/svg%3E');"></div>
+
+    <Header lang="es" currentPage="/tools" />
+
+    <div class="relative pt-32 pb-20 px-6">
+      <div class="max-w-4xl mx-auto">
+        <!-- Header -->
+        <div class="mb-8">
+          <a href="/tools" class="inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] hover:text-[#7cb872] transition-colors mb-4">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+            Tools
+          </a>
+          <h1 class="font-serif text-3xl md:text-4xl mb-2">String Tools</h1>
+          <p class="text-[var(--color-text-muted)]">Conversión, conteo y codificación de texto.</p>
+        </div>
+
+        <!-- Tabs -->
+        <div class="mb-6">
+          <div class="flex gap-2 border-b border-[var(--color-border)]">
+            <button data-tab="convert" class="tab-btn active px-4 py-3 text-sm font-medium border-b-2 border-transparent -mb-px transition-colors">
+              Conversión
+            </button>
+            <button data-tab="count" class="tab-btn px-4 py-3 text-sm font-medium border-b-2 border-transparent -mb-px transition-colors">
+              Conteo
+            </button>
+            <button data-tab="encode" class="tab-btn px-4 py-3 text-sm font-medium border-b-2 border-transparent -mb-px transition-colors">
+              Codificación
+            </button>
+          </div>
+        </div>
+
+        <!-- Input -->
+        <div class="mb-6">
+          <label class="block text-sm font-medium mb-2">Texto de entrada</label>
+          <textarea
+            id="input"
+            rows="5"
+            placeholder="Escribe o pega tu texto aquí..."
+            class="w-full px-4 py-3 bg-[var(--color-bg-alt)] border border-[var(--color-border)] rounded-lg text-[var(--color-text)] placeholder-[var(--color-text-subtle)] focus:outline-none focus:border-[#7cb872] transition-colors resize-none font-mono text-sm"
+          ></textarea>
+        </div>
+
+        <!-- Tab Content: Convert -->
+        <div id="tab-convert" class="tab-content">
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+            <button data-action="uppercase" class="action-btn px-4 py-2.5 text-sm bg-[var(--color-bg-alt)] border border-[var(--color-border)] rounded-lg hover:border-[#7cb872] hover:text-[#7cb872] transition-all">
+              MAYÚSCULAS
+            </button>
+            <button data-action="lowercase" class="action-btn px-4 py-2.5 text-sm bg-[var(--color-bg-alt)] border border-[var(--color-border)] rounded-lg hover:border-[#7cb872] hover:text-[#7cb872] transition-all">
+              minúsculas
+            </button>
+            <button data-action="capitalize" class="action-btn px-4 py-2.5 text-sm bg-[var(--color-bg-alt)] border border-[var(--color-border)] rounded-lg hover:border-[#7cb872] hover:text-[#7cb872] transition-all">
+              Capitalizar
+            </button>
+            <button data-action="titlecase" class="action-btn px-4 py-2.5 text-sm bg-[var(--color-bg-alt)] border border-[var(--color-border)] rounded-lg hover:border-[#7cb872] hover:text-[#7cb872] transition-all">
+              Title Case
+            </button>
+            <button data-action="camelcase" class="action-btn px-4 py-2.5 text-sm bg-[var(--color-bg-alt)] border border-[var(--color-border)] rounded-lg hover:border-[#7cb872] hover:text-[#7cb872] transition-all">
+              camelCase
+            </button>
+            <button data-action="pascalcase" class="action-btn px-4 py-2.5 text-sm bg-[var(--color-bg-alt)] border border-[var(--color-border)] rounded-lg hover:border-[#7cb872] hover:text-[#7cb872] transition-all">
+              PascalCase
+            </button>
+            <button data-action="snakecase" class="action-btn px-4 py-2.5 text-sm bg-[var(--color-bg-alt)] border border-[var(--color-border)] rounded-lg hover:border-[#7cb872] hover:text-[#7cb872] transition-all">
+              snake_case
+            </button>
+            <button data-action="kebabcase" class="action-btn px-4 py-2.5 text-sm bg-[var(--color-bg-alt)] border border-[var(--color-border)] rounded-lg hover:border-[#7cb872] hover:text-[#7cb872] transition-all">
+              kebab-case
+            </button>
+            <button data-action="slug" class="action-btn px-4 py-2.5 text-sm bg-[var(--color-bg-alt)] border border-[var(--color-border)] rounded-lg hover:border-[#7cb872] hover:text-[#7cb872] transition-all">
+              slug-url
+            </button>
+            <button data-action="reverse" class="action-btn px-4 py-2.5 text-sm bg-[var(--color-bg-alt)] border border-[var(--color-border)] rounded-lg hover:border-[#7cb872] hover:text-[#7cb872] transition-all">
+              Invertir
+            </button>
+            <button data-action="trim" class="action-btn px-4 py-2.5 text-sm bg-[var(--color-bg-alt)] border border-[var(--color-border)] rounded-lg hover:border-[#7cb872] hover:text-[#7cb872] transition-all">
+              Trim
+            </button>
+            <button data-action="removespaces" class="action-btn px-4 py-2.5 text-sm bg-[var(--color-bg-alt)] border border-[var(--color-border)] rounded-lg hover:border-[#7cb872] hover:text-[#7cb872] transition-all">
+              Sin espacios
+            </button>
+          </div>
+        </div>
+
+        <!-- Tab Content: Count -->
+        <div id="tab-count" class="tab-content hidden">
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="p-4 bg-[var(--color-bg-alt)] border border-[var(--color-border)] rounded-lg text-center">
+              <div id="char-count" class="text-2xl font-bold text-[#7cb872]">0</div>
+              <div class="text-xs text-[var(--color-text-muted)] mt-1">Caracteres</div>
+            </div>
+            <div class="p-4 bg-[var(--color-bg-alt)] border border-[var(--color-border)] rounded-lg text-center">
+              <div id="char-no-space" class="text-2xl font-bold text-[#7cb872]">0</div>
+              <div class="text-xs text-[var(--color-text-muted)] mt-1">Sin espacios</div>
+            </div>
+            <div class="p-4 bg-[var(--color-bg-alt)] border border-[var(--color-border)] rounded-lg text-center">
+              <div id="word-count" class="text-2xl font-bold text-[#7cb872]">0</div>
+              <div class="text-xs text-[var(--color-text-muted)] mt-1">Palabras</div>
+            </div>
+            <div class="p-4 bg-[var(--color-bg-alt)] border border-[var(--color-border)] rounded-lg text-center">
+              <div id="line-count" class="text-2xl font-bold text-[#7cb872]">0</div>
+              <div class="text-xs text-[var(--color-text-muted)] mt-1">Líneas</div>
+            </div>
+            <div class="p-4 bg-[var(--color-bg-alt)] border border-[var(--color-border)] rounded-lg text-center">
+              <div id="sentence-count" class="text-2xl font-bold text-[#7cb872]">0</div>
+              <div class="text-xs text-[var(--color-text-muted)] mt-1">Oraciones</div>
+            </div>
+            <div class="p-4 bg-[var(--color-bg-alt)] border border-[var(--color-border)] rounded-lg text-center">
+              <div id="paragraph-count" class="text-2xl font-bold text-[#7cb872]">0</div>
+              <div class="text-xs text-[var(--color-text-muted)] mt-1">Párrafos</div>
+            </div>
+            <div class="p-4 bg-[var(--color-bg-alt)] border border-[var(--color-border)] rounded-lg text-center">
+              <div id="byte-count" class="text-2xl font-bold text-[#7cb872]">0</div>
+              <div class="text-xs text-[var(--color-text-muted)] mt-1">Bytes</div>
+            </div>
+            <div class="p-4 bg-[var(--color-bg-alt)] border border-[var(--color-border)] rounded-lg text-center">
+              <div id="read-time" class="text-2xl font-bold text-[#7cb872]">0</div>
+              <div class="text-xs text-[var(--color-text-muted)] mt-1">Min lectura</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab Content: Encode -->
+        <div id="tab-encode" class="tab-content hidden">
+          <div class="grid grid-cols-2 md:grid-cols-3 gap-3 mb-6">
+            <button data-action="base64encode" class="action-btn px-4 py-2.5 text-sm bg-[var(--color-bg-alt)] border border-[var(--color-border)] rounded-lg hover:border-[#7cb872] hover:text-[#7cb872] transition-all">
+              Base64 Encode
+            </button>
+            <button data-action="base64decode" class="action-btn px-4 py-2.5 text-sm bg-[var(--color-bg-alt)] border border-[var(--color-border)] rounded-lg hover:border-[#7cb872] hover:text-[#7cb872] transition-all">
+              Base64 Decode
+            </button>
+            <button data-action="urlencode" class="action-btn px-4 py-2.5 text-sm bg-[var(--color-bg-alt)] border border-[var(--color-border)] rounded-lg hover:border-[#7cb872] hover:text-[#7cb872] transition-all">
+              URL Encode
+            </button>
+            <button data-action="urldecode" class="action-btn px-4 py-2.5 text-sm bg-[var(--color-bg-alt)] border border-[var(--color-border)] rounded-lg hover:border-[#7cb872] hover:text-[#7cb872] transition-all">
+              URL Decode
+            </button>
+            <button data-action="htmlencode" class="action-btn px-4 py-2.5 text-sm bg-[var(--color-bg-alt)] border border-[var(--color-border)] rounded-lg hover:border-[#7cb872] hover:text-[#7cb872] transition-all">
+              HTML Encode
+            </button>
+            <button data-action="htmldecode" class="action-btn px-4 py-2.5 text-sm bg-[var(--color-bg-alt)] border border-[var(--color-border)] rounded-lg hover:border-[#7cb872] hover:text-[#7cb872] transition-all">
+              HTML Decode
+            </button>
+          </div>
+        </div>
+
+        <!-- Output -->
+        <div class="mt-6">
+          <div class="flex items-center justify-between mb-2">
+            <label class="text-sm font-medium">Resultado</label>
+            <button id="copy-btn" class="text-xs px-3 py-1.5 rounded-lg bg-[#7cb872] text-black font-medium hover:bg-[#6aa862] transition-colors">
+              Copiar
+            </button>
+          </div>
+          <textarea
+            id="output"
+            rows="5"
+            readonly
+            placeholder="El resultado aparecerá aquí..."
+            class="w-full px-4 py-3 bg-[var(--color-bg-alt)] border border-[var(--color-border)] rounded-lg text-[var(--color-text)] placeholder-[var(--color-text-subtle)] focus:outline-none resize-none font-mono text-sm"
+          ></textarea>
+        </div>
+
+        <!-- Clear button -->
+        <div class="mt-4 flex justify-end">
+          <button id="clear-btn" class="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors">
+            Limpiar todo
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .font-serif {
+    font-family: 'Playfair Display', Georgia, serif;
+  }
+
+  .tab-btn {
+    color: var(--color-text-muted);
+  }
+
+  .tab-btn:hover {
+    color: var(--color-text);
+  }
+
+  .tab-btn.active {
+    color: #7cb872;
+    border-color: #7cb872;
+  }
+</style>
+
+<script>
+  // DOM Elements
+  const input = document.getElementById('input') as HTMLTextAreaElement;
+  const output = document.getElementById('output') as HTMLTextAreaElement;
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  const tabContents = document.querySelectorAll('.tab-content');
+  const actionBtns = document.querySelectorAll('.action-btn');
+  const copyBtn = document.getElementById('copy-btn');
+  const clearBtn = document.getElementById('clear-btn');
+
+  // Tab switching
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tab = btn.getAttribute('data-tab');
+
+      tabBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      tabContents.forEach(content => {
+        content.classList.add('hidden');
+        if (content.id === `tab-${tab}`) {
+          content.classList.remove('hidden');
+        }
+      });
+    });
+  });
+
+  // Conversion functions
+  const conversions: Record<string, (s: string) => string> = {
+    uppercase: (s) => s.toUpperCase(),
+    lowercase: (s) => s.toLowerCase(),
+    capitalize: (s) => s.charAt(0).toUpperCase() + s.slice(1).toLowerCase(),
+    titlecase: (s) => s.replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()),
+    camelcase: (s) => s.toLowerCase().replace(/[^a-zA-Z0-9]+(.)/g, (_, c) => c.toUpperCase()),
+    pascalcase: (s) => s.toLowerCase().replace(/(?:^|[^a-zA-Z0-9]+)(.)/g, (_, c) => c.toUpperCase()),
+    snakecase: (s) => s.toLowerCase().replace(/\s+/g, '_').replace(/[^a-z0-9_]/g, ''),
+    kebabcase: (s) => s.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, ''),
+    slug: (s) => s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''),
+    reverse: (s) => s.split('').reverse().join(''),
+    trim: (s) => s.trim(),
+    removespaces: (s) => s.replace(/\s+/g, ''),
+    base64encode: (s) => btoa(unescape(encodeURIComponent(s))),
+    base64decode: (s) => { try { return decodeURIComponent(escape(atob(s))); } catch { return 'Error: Invalid Base64'; } },
+    urlencode: (s) => encodeURIComponent(s),
+    urldecode: (s) => { try { return decodeURIComponent(s); } catch { return 'Error: Invalid URL encoding'; } },
+    htmlencode: (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;'),
+    htmldecode: (s) => s.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#039;/g, "'"),
+  };
+
+  // Action buttons
+  actionBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const action = btn.getAttribute('data-action');
+      if (action && conversions[action]) {
+        output.value = conversions[action](input.value);
+      }
+    });
+  });
+
+  // Count functions
+  function updateCounts() {
+    const text = input.value;
+
+    document.getElementById('char-count')!.textContent = text.length.toString();
+    document.getElementById('char-no-space')!.textContent = text.replace(/\s/g, '').length.toString();
+    document.getElementById('word-count')!.textContent = (text.trim() ? text.trim().split(/\s+/).length : 0).toString();
+    document.getElementById('line-count')!.textContent = (text ? text.split('\n').length : 0).toString();
+    document.getElementById('sentence-count')!.textContent = (text.match(/[.!?]+/g) || []).length.toString();
+    document.getElementById('paragraph-count')!.textContent = (text.trim() ? text.trim().split(/\n\n+/).length : 0).toString();
+    document.getElementById('byte-count')!.textContent = new Blob([text]).size.toString();
+    document.getElementById('read-time')!.textContent = Math.ceil((text.trim().split(/\s+/).length || 0) / 200).toString();
+  }
+
+  input.addEventListener('input', updateCounts);
+
+  // Copy button
+  copyBtn?.addEventListener('click', async () => {
+    await navigator.clipboard.writeText(output.value);
+    const originalText = copyBtn.textContent;
+    copyBtn.textContent = 'Copiado!';
+    setTimeout(() => { copyBtn.textContent = originalText; }, 1500);
+  });
+
+  // Clear button
+  clearBtn?.addEventListener('click', () => {
+    input.value = '';
+    output.value = '';
+    updateCounts();
+  });
+
+  // Initial count
+  updateCounts();
+</script>

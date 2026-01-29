@@ -1,0 +1,328 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Header from "@components/Header.astro";
+---
+
+<Layout title="QR Code Generator - Roberto Salas" description="Generate custom QR codes">
+  <main class="min-h-screen">
+    <Header lang="es" currentPage="/tools" />
+
+    <div class="relative pt-24 pb-12 px-4">
+      <div class="max-w-4xl mx-auto">
+        <!-- Header -->
+        <div class="mb-6">
+          <a href="/tools" class="inline-flex items-center gap-1.5 text-xs text-[var(--color-text-muted)] hover:text-[#7cb872] transition-colors mb-2">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+            Tools
+          </a>
+          <h1 class="text-2xl font-semibold">QR Code Generator</h1>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <!-- Left: Options -->
+          <div class="space-y-4">
+            <!-- Content Type -->
+            <div class="p-4 bg-[var(--color-bg-alt)] border border-[var(--color-border)] rounded-xl">
+              <label class="block text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide mb-3">Content Type</label>
+              <div class="grid grid-cols-4 gap-2">
+                <button data-type="text" class="type-btn active flex flex-col items-center gap-1 p-3 border border-[var(--color-border)] rounded-lg">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" /></svg>
+                  <span class="text-xs">URL</span>
+                </button>
+                <button data-type="wifi" class="type-btn flex flex-col items-center gap-1 p-3 border border-[var(--color-border)] rounded-lg">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0" /></svg>
+                  <span class="text-xs">WiFi</span>
+                </button>
+                <button data-type="phone" class="type-btn flex flex-col items-center gap-1 p-3 border border-[var(--color-border)] rounded-lg">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
+                  <span class="text-xs">Phone</span>
+                </button>
+                <button data-type="email" class="type-btn flex flex-col items-center gap-1 p-3 border border-[var(--color-border)] rounded-lg">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                  <span class="text-xs">Email</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Content Input -->
+            <div class="p-4 bg-[var(--color-bg-alt)] border border-[var(--color-border)] rounded-xl">
+              <label class="block text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide mb-3">Content</label>
+
+              <div id="form-text" class="content-form">
+                <textarea id="input-text" rows="3" placeholder="https://example.com" class="w-full px-4 py-3 bg-[var(--color-bg)] border border-[var(--color-border)] rounded-lg text-sm font-mono focus:outline-none focus:border-[#7cb872] resize-none">https://beto.page</textarea>
+              </div>
+
+              <div id="form-wifi" class="content-form hidden space-y-3">
+                <input type="text" id="wifi-ssid" placeholder="Network name (SSID)" class="w-full px-4 py-3 bg-[var(--color-bg)] border border-[var(--color-border)] rounded-lg text-sm focus:outline-none focus:border-[#7cb872]">
+                <input type="text" id="wifi-password" placeholder="Password" class="w-full px-4 py-3 bg-[var(--color-bg)] border border-[var(--color-border)] rounded-lg text-sm focus:outline-none focus:border-[#7cb872]">
+                <select id="wifi-security" class="w-full px-4 py-3 bg-[var(--color-bg)] border border-[var(--color-border)] rounded-lg text-sm focus:outline-none focus:border-[#7cb872]">
+                  <option value="WPA">WPA/WPA2</option>
+                  <option value="WEP">WEP</option>
+                  <option value="nopass">No password</option>
+                </select>
+              </div>
+
+              <div id="form-phone" class="content-form hidden">
+                <input type="tel" id="input-phone" placeholder="+1 555 123 4567" class="w-full px-4 py-3 bg-[var(--color-bg)] border border-[var(--color-border)] rounded-lg text-sm focus:outline-none focus:border-[#7cb872]">
+              </div>
+
+              <div id="form-email" class="content-form hidden space-y-3">
+                <input type="email" id="email-to" placeholder="email@example.com" class="w-full px-4 py-3 bg-[var(--color-bg)] border border-[var(--color-border)] rounded-lg text-sm focus:outline-none focus:border-[#7cb872]">
+                <input type="text" id="email-subject" placeholder="Subject (optional)" class="w-full px-4 py-3 bg-[var(--color-bg)] border border-[var(--color-border)] rounded-lg text-sm focus:outline-none focus:border-[#7cb872]">
+              </div>
+            </div>
+
+            <!-- Customization -->
+            <div class="p-4 bg-[var(--color-bg-alt)] border border-[var(--color-border)] rounded-xl">
+              <label class="block text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide mb-3">Customization</label>
+
+              <!-- Style -->
+              <div class="mb-4">
+                <span class="text-xs text-[var(--color-text-muted)] mb-2 block">Style</span>
+                <div class="flex gap-2">
+                  <button data-style="square" class="style-btn active flex-1 p-2 border border-[var(--color-border)] rounded-lg"><div class="w-4 h-4 mx-auto bg-current"></div></button>
+                  <button data-style="dots" class="style-btn flex-1 p-2 border border-[var(--color-border)] rounded-lg"><div class="w-4 h-4 mx-auto bg-current rounded-full"></div></button>
+                  <button data-style="rounded" class="style-btn flex-1 p-2 border border-[var(--color-border)] rounded-lg"><div class="w-4 h-4 mx-auto bg-current rounded-md"></div></button>
+                  <button data-style="classy-rounded" class="style-btn flex-1 p-2 border border-[var(--color-border)] rounded-lg"><div class="w-4 h-4 mx-auto bg-current rounded-sm"></div></button>
+                </div>
+              </div>
+
+              <!-- Colors -->
+              <div class="flex gap-4 mb-4">
+                <div class="flex-1">
+                  <span class="text-xs text-[var(--color-text-muted)] mb-2 block">QR Color</span>
+                  <div class="flex items-center gap-2 p-2 bg-[var(--color-bg)] border border-[var(--color-border)] rounded-lg">
+                    <input type="color" id="qr-color" value="#000000" class="w-8 h-8 rounded cursor-pointer">
+                    <div class="flex gap-1">
+                      <button data-preset="#000000" class="preset-btn w-6 h-6 rounded-full bg-black border border-[var(--color-border)]"></button>
+                      <button data-preset="#2563eb" class="preset-btn w-6 h-6 rounded-full bg-blue-600"></button>
+                      <button data-preset="#059669" class="preset-btn w-6 h-6 rounded-full bg-emerald-600"></button>
+                      <button data-preset="#dc2626" class="preset-btn w-6 h-6 rounded-full bg-red-600"></button>
+                    </div>
+                  </div>
+                </div>
+                <div class="flex-1">
+                  <span class="text-xs text-[var(--color-text-muted)] mb-2 block">Background</span>
+                  <div class="flex items-center gap-2 p-2 bg-[var(--color-bg)] border border-[var(--color-border)] rounded-lg">
+                    <input type="color" id="bg-color" value="#ffffff" class="w-8 h-8 rounded cursor-pointer">
+                  </div>
+                </div>
+              </div>
+
+              <!-- Logo -->
+              <div>
+                <span class="text-xs text-[var(--color-text-muted)] mb-2 block">Logo (optional)</span>
+                <div class="flex gap-2">
+                  <label class="flex-1 flex items-center justify-center gap-2 p-3 bg-[var(--color-bg)] border border-dashed border-[var(--color-border)] rounded-lg cursor-pointer hover:border-[#7cb872]">
+                    <svg class="w-5 h-5 text-[var(--color-text-muted)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                    <span class="text-sm" id="logo-label">Upload logo</span>
+                    <input type="file" id="logo-input" accept="image/*" class="hidden">
+                  </label>
+                  <button id="remove-logo" class="hidden px-3 text-red-500 border border-red-500/30 rounded-lg hover:bg-red-500/10">✕</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Preview & Download -->
+          <div>
+            <div class="lg:sticky lg:top-24 space-y-4">
+              <!-- Preview -->
+              <div class="p-6 bg-[var(--color-bg-alt)] border border-[var(--color-border)] rounded-xl">
+                <div id="qr-preview" class="aspect-square bg-white rounded-lg flex items-center justify-center overflow-hidden"></div>
+              </div>
+
+              <!-- Size Selection -->
+              <div class="p-4 bg-[var(--color-bg-alt)] border border-[var(--color-border)] rounded-xl">
+                <label class="block text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide mb-3">Export Size</label>
+                <div class="grid grid-cols-4 gap-2">
+                  <button data-size="256" class="size-btn py-2 text-sm border border-[var(--color-border)] rounded-lg">256px</button>
+                  <button data-size="512" class="size-btn active py-2 text-sm border border-[var(--color-border)] rounded-lg">512px</button>
+                  <button data-size="1024" class="size-btn py-2 text-sm border border-[var(--color-border)] rounded-lg">1024px</button>
+                  <button data-size="2048" class="size-btn py-2 text-sm border border-[var(--color-border)] rounded-lg">2048px</button>
+                </div>
+              </div>
+
+              <!-- Download Buttons -->
+              <div class="grid grid-cols-3 gap-3">
+                <button data-format="png" class="export-btn flex items-center justify-center gap-2 py-4 bg-[#7cb872] text-black font-medium rounded-xl hover:bg-[#6aa862] transition-colors">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
+                  PNG
+                </button>
+                <button data-format="svg" class="export-btn flex items-center justify-center gap-2 py-4 border border-[var(--color-border)] rounded-xl hover:border-[#7cb872] transition-colors">
+                  SVG
+                </button>
+                <button data-format="jpeg" class="export-btn flex items-center justify-center gap-2 py-4 border border-[var(--color-border)] rounded-xl hover:border-[#7cb872] transition-colors">
+                  JPEG
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .type-btn { color: var(--color-text-muted); transition: all 0.2s; }
+  .type-btn:hover { border-color: var(--color-text-muted); }
+  .type-btn.active { border-color: #7cb872; background: rgba(124, 184, 114, 0.1); color: #7cb872; }
+
+  .style-btn.active, .size-btn.active { border-color: #7cb872; background: rgba(124, 184, 114, 0.1); color: #7cb872; }
+
+  .preset-btn { transition: transform 0.2s; }
+  .preset-btn:hover { transform: scale(1.1); }
+
+  input[type="color"] { -webkit-appearance: none; padding: 0; border: none; }
+  input[type="color"]::-webkit-color-swatch-wrapper { padding: 0; }
+  input[type="color"]::-webkit-color-swatch { border: none; border-radius: 6px; }
+
+  #qr-preview canvas, #qr-preview svg { width: 100% !important; height: 100% !important; }
+</style>
+
+<script>
+  import QRCodeStyling from 'qr-code-styling';
+
+  let currentType = 'text';
+  let currentStyle = 'square';
+  let exportSize = 512;
+  let logoDataUrl: string | null = null;
+
+  const preview = document.getElementById('qr-preview') as HTMLDivElement;
+  const qrColor = document.getElementById('qr-color') as HTMLInputElement;
+  const bgColor = document.getElementById('bg-color') as HTMLInputElement;
+  const logoInput = document.getElementById('logo-input') as HTMLInputElement;
+  const logoLabel = document.getElementById('logo-label') as HTMLSpanElement;
+  const removeLogo = document.getElementById('remove-logo') as HTMLButtonElement;
+
+  function getQRData(): string {
+    switch (currentType) {
+      case 'wifi': {
+        const ssid = (document.getElementById('wifi-ssid') as HTMLInputElement).value;
+        const password = (document.getElementById('wifi-password') as HTMLInputElement).value;
+        const security = (document.getElementById('wifi-security') as HTMLSelectElement).value;
+        return `WIFI:T:${security};S:${ssid};P:${password};;`;
+      }
+      case 'phone': return `tel:${(document.getElementById('input-phone') as HTMLInputElement).value}`;
+      case 'email': {
+        const to = (document.getElementById('email-to') as HTMLInputElement).value;
+        const subject = (document.getElementById('email-subject') as HTMLInputElement).value;
+        return `mailto:${to}${subject ? `?subject=${encodeURIComponent(subject)}` : ''}`;
+      }
+      default: return (document.getElementById('input-text') as HTMLTextAreaElement).value || 'https://beto.page';
+    }
+  }
+
+  function createQR(size: number = 280) {
+    const errorLevel = logoDataUrl ? 'Q' : 'M';
+    const options: any = {
+      width: size,
+      height: size,
+      data: getQRData(),
+      dotsOptions: { type: currentStyle, color: qrColor.value },
+      backgroundOptions: { color: bgColor.value },
+      cornersSquareOptions: { type: currentStyle === 'dots' ? 'dot' : 'square', color: qrColor.value },
+      cornersDotOptions: { type: currentStyle === 'dots' ? 'dot' : 'square', color: qrColor.value },
+      qrOptions: { errorCorrectionLevel: errorLevel }
+    };
+    if (logoDataUrl) {
+      options.image = logoDataUrl;
+      options.imageOptions = { crossOrigin: 'anonymous', margin: 8, imageSize: 0.35 };
+    }
+    return new QRCodeStyling(options);
+  }
+
+  function generatePreview() {
+    preview.innerHTML = '';
+    createQR(300).append(preview);
+  }
+
+  function downloadQR(format: string) {
+    createQR(exportSize).download({ name: 'qr-code', extension: format as any });
+  }
+
+  // Type buttons
+  document.querySelectorAll('.type-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.type-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentType = btn.getAttribute('data-type') || 'text';
+      document.querySelectorAll('.content-form').forEach(form => form.classList.add('hidden'));
+      document.getElementById(`form-${currentType}`)?.classList.remove('hidden');
+      generatePreview();
+    });
+  });
+
+  // Style buttons
+  document.querySelectorAll('.style-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.style-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentStyle = btn.getAttribute('data-style') || 'square';
+      generatePreview();
+    });
+  });
+
+  // Color inputs
+  qrColor.addEventListener('input', generatePreview);
+  bgColor.addEventListener('input', generatePreview);
+
+  // Color presets
+  document.querySelectorAll('.preset-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const color = btn.getAttribute('data-preset');
+      if (color) { qrColor.value = color; generatePreview(); }
+    });
+  });
+
+  // Logo upload
+  logoInput.addEventListener('change', (e) => {
+    const file = (e.target as HTMLInputElement).files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        logoDataUrl = e.target?.result as string;
+        logoLabel.textContent = file.name.slice(0, 15) + '...';
+        removeLogo.classList.remove('hidden');
+        generatePreview();
+      };
+      reader.readAsDataURL(file);
+    }
+  });
+
+  // Remove logo
+  removeLogo.addEventListener('click', () => {
+    logoDataUrl = null;
+    logoInput.value = '';
+    logoLabel.textContent = 'Upload logo';
+    removeLogo.classList.add('hidden');
+    generatePreview();
+  });
+
+  // Size buttons
+  document.querySelectorAll('.size-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      exportSize = parseInt(btn.getAttribute('data-size') || '512');
+    });
+  });
+
+  // Export buttons
+  document.querySelectorAll('.export-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const format = btn.getAttribute('data-format');
+      if (format) downloadQR(format);
+    });
+  });
+
+  // Listen for input changes
+  document.querySelectorAll('input, textarea, select').forEach(el => {
+    el.addEventListener('input', generatePreview);
+    el.addEventListener('change', generatePreview);
+  });
+
+  // Initial generation
+  generatePreview();
+</script>

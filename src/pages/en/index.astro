@@ -8,13 +8,13 @@ const { personal } = resumeData;
 const featuredProjects = projectsData.filter((p: any) => p.featured).slice(0, 3);
 ---
 
-<Layout title="Roberto Salas — Mi Historia" description="Desarrollador de software. Esta es mi historia.">
+<Layout title="Roberto Salas — My Story" description="Software developer. This is my story.">
   <main class="min-h-screen">
 
     <!-- Subtle texture overlay -->
     <div class="fixed inset-0 pointer-events-none opacity-10 dark:opacity-20" style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noise%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noise)%22 opacity=%220.06%22/%3E%3C/svg%3E');"></div>
 
-    <Header lang="es" currentPage="/" />
+    <Header lang="en" currentPage="/en" />
 
     <!-- Hero: Editorial Introduction -->
     <section class="relative min-h-screen flex items-center pt-20 pb-32 px-6">
@@ -25,24 +25,42 @@ const featuredProjects = projectsData.filter((p: any) => p.featured).slice(0, 3)
           <div class="lg:col-span-7 space-y-8">
             <!-- Main headline -->
             <h1 class="font-serif text-5xl md:text-6xl lg:text-7xl leading-[1.1] tracking-tight">
-              Hola, soy
+              Hi, I'm
               <span class="italic text-[#7cb872]">Roberto</span>
             </h1>
 
             <!-- Bio paragraph -->
             <div class="space-y-6 text-lg md:text-xl leading-relaxed text-[var(--color-text-muted)]">
               <p>
-                Llevo <strong class="text-[var(--color-text)] font-medium">más de diez años</strong> escribiendo código.
-                Empecé en la universidad, rompiendo cosas y aprendiendo a arreglarlas.
-                Hoy construyo aplicaciones que usan <strong class="text-[var(--color-text)] font-medium">millones de personas</strong>.
+                I've been <strong class="text-[var(--color-text)] font-medium">writing code for over ten years</strong>.
+                Started in college, breaking things and learning to fix them.
+                Today I build applications used by <strong class="text-[var(--color-text)] font-medium">millions of people</strong>.
               </p>
               <p>
-                Entre commits y deployments, completé dos maestrías: una en
-                <em class="text-[var(--color-text)]">Seguridad Informática</em> y otra en <em class="text-[var(--color-text)]">Ciencia de Datos</em>.
-                No porque me gusten los títulos, sino porque me fascina entender cómo funcionan las cosas.
+                Between commits and deployments, I completed two master's degrees: one in
+                <em class="text-[var(--color-text)]">Cybersecurity</em> and another in <em class="text-[var(--color-text)]">Data Science</em>.
+                Not because I like titles, but because I'm fascinated by understanding how things work.
               </p>
             </div>
 
+            <!-- Quick facts -->
+            <div class="flex flex-wrap gap-4 pt-4">
+              <span class="px-4 py-2 rounded-full border border-[var(--color-border)] text-sm text-[var(--color-text-muted)]">
+                Python
+              </span>
+              <span class="px-4 py-2 rounded-full border border-[var(--color-border)] text-sm text-[var(--color-text-muted)]">
+                TypeScript
+              </span>
+              <span class="px-4 py-2 rounded-full border border-[var(--color-border)] text-sm text-[var(--color-text-muted)]">
+                Vue.js
+              </span>
+              <span class="px-4 py-2 rounded-full border border-[var(--color-border)] text-sm text-[var(--color-text-muted)]">
+                AWS
+              </span>
+              <span class="px-4 py-2 rounded-full border border-[var(--color-border)] text-sm text-[var(--color-text-muted)]">
+                +10 more
+              </span>
+            </div>
           </div>
 
           <!-- Right: Photo placeholder / Visual -->
@@ -85,14 +103,14 @@ const featuredProjects = projectsData.filter((p: any) => p.featured).slice(0, 3)
         <!-- Header -->
         <div class="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
           <div>
-            <p class="text-[#7cb872] text-sm uppercase tracking-[0.25em] font-medium mb-4">Trabajo destacado</p>
+            <p class="text-[#7cb872] text-sm uppercase tracking-[0.25em] font-medium mb-4">Featured work</p>
             <h2 class="font-serif text-4xl md:text-5xl leading-tight">
-              Algunos proyectos<br/>
-              <span class="italic">que me enorgullecen</span>
+              Some projects<br/>
+              <span class="italic">I'm proud of</span>
             </h2>
           </div>
-          <a href="/projects" class="inline-flex items-center gap-2 text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors group">
-            Ver todos
+          <a href="/en/projects" class="inline-flex items-center gap-2 text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors group">
+            View all
             <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
@@ -112,12 +130,12 @@ const featuredProjects = projectsData.filter((p: any) => p.featured).slice(0, 3)
                   <span class="font-serif text-6xl text-[var(--color-text)]/10 italic">{project.title.charAt(0)}</span>
                 </div>
                 <div class="absolute inset-0 bg-[#7cb872]/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                  <span class="text-black text-sm uppercase tracking-wider font-medium">Ver proyecto</span>
+                  <span class="text-black text-sm uppercase tracking-wider font-medium">View project</span>
                 </div>
               </div>
               <p class="text-[var(--color-text-subtle)] text-xs uppercase tracking-wider mb-2">{project.category}</p>
               <h3 class="font-serif text-xl mb-2 group-hover:text-[#7cb872] transition-colors">{project.title}</h3>
-              <p class="text-[var(--color-text-muted)] text-sm leading-relaxed">{project.description.es}</p>
+              <p class="text-[var(--color-text-muted)] text-sm leading-relaxed">{project.description.en}</p>
             </a>
           ))}
         </div>
@@ -129,10 +147,10 @@ const featuredProjects = projectsData.filter((p: any) => p.featured).slice(0, 3)
       <div class="max-w-3xl mx-auto text-center">
         <div class="w-16 h-px bg-[#7cb872] mx-auto mb-12"></div>
         <blockquote class="font-serif text-3xl md:text-4xl leading-relaxed text-[var(--color-text-muted)] italic mb-8">
-          "El código es solo una herramienta. Lo que importa es el problema que resuelves
-          y las personas a las que ayudas."
+          "Code is just a tool. What matters is the problem you solve
+          and the people you help."
         </blockquote>
-        <p class="text-[var(--color-text-subtle)]">— Mi filosofía después de 10+ años</p>
+        <p class="text-[var(--color-text-subtle)]">— My philosophy after 10+ years</p>
       </div>
     </section>
 
@@ -141,14 +159,14 @@ const featuredProjects = projectsData.filter((p: any) => p.featured).slice(0, 3)
       <div class="max-w-6xl mx-auto">
         <div class="grid md:grid-cols-2 gap-16 items-center">
           <div>
-            <p class="text-[#7cb872] text-sm uppercase tracking-[0.25em] font-medium mb-4">Conectemos</p>
+            <p class="text-[#7cb872] text-sm uppercase tracking-[0.25em] font-medium mb-4">Let's connect</p>
             <h2 class="font-serif text-3xl md:text-4xl leading-tight mb-6">
-              ¿Tienes un proyecto interesante<br/>
-              <span class="italic">o solo quieres saludar?</span>
+              Have an interesting project<br/>
+              <span class="italic">or just want to say hi?</span>
             </h2>
             <p class="text-[var(--color-text-muted)] leading-relaxed">
-              Siempre me gusta conocer gente nueva y escuchar sobre proyectos interesantes.
-              Si necesitas servicios profesionales, visita <a href="https://saltek.mx" target="_blank" class="text-[#7cb872] hover:underline">saltek.mx</a>.
+              I always enjoy meeting new people and hearing about interesting projects.
+              If you need professional services, visit <a href="https://saltek.mx" target="_blank" class="text-[#7cb872] hover:underline">saltek.mx</a>.
             </p>
           </div>
           <div class="space-y-6">
@@ -189,7 +207,7 @@ const featuredProjects = projectsData.filter((p: any) => p.featured).slice(0, 3)
           © {new Date().getFullYear()} Roberto Salas
         </p>
         <div class="flex items-center gap-6 text-sm text-[var(--color-text-subtle)]">
-          <a href="/en" class="hover:text-[var(--color-text)] transition-colors">English</a>
+          <a href="/" class="hover:text-[var(--color-text)] transition-colors">Español</a>
           <span>·</span>
           <a href="https://saltek.mx" target="_blank" class="hover:text-[#7cb872] transition-colors">saltek.mx</a>
         </div>
