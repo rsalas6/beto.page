@@ -2,7 +2,8 @@ import { ui, type UiKey } from "./ui";
 import { defaultLang, type Lang } from "./languages";
 
 // Pages that only exist in Spanish (no English version)
-const spanishOnlyPaths = ["/tools", "/resume-print"];
+// These are prefixes - any path starting with these won't have an English version
+const spanishOnlyPrefixes = ["/tools", "/resume-print"];
 
 export function getLangFromUrl(url: URL): Lang {
   const [, lang] = url.pathname.split("/");
@@ -26,7 +27,7 @@ export function switchLang(currentPath: string, newLang: Lang): string {
   const cleanPath = currentPath.replace(/^\/(es|en)/, "") || "/";
 
   // If switching to English but page only exists in Spanish, go to home
-  if (newLang === "en" && spanishOnlyPaths.some(p => cleanPath.startsWith(p))) {
+  if (newLang === "en" && spanishOnlyPrefixes.some(p => cleanPath.startsWith(p))) {
     return "/en";
   }
 
@@ -36,5 +37,5 @@ export function switchLang(currentPath: string, newLang: Lang): string {
 
 export function isSpanishOnlyPage(path: string): boolean {
   const cleanPath = path.replace(/^\/(es|en)/, "") || "/";
-  return spanishOnlyPaths.some(p => cleanPath.startsWith(p));
+  return spanishOnlyPrefixes.some(p => cleanPath.startsWith(p));
 }
