@@ -1,72 +1,10 @@
 ---
-import Layout from "@layouts/Layout.astro";
+import Layout from "@/layouts/Layout.astro";
 ---
 
-<Layout title="404 - Perdido" description="La página que buscas no existe.">
-  <main class="min-h-screen flex items-center justify-center px-6">
-    <div class="text-center">
-      <!-- Glitchy 404 -->
-      <h1 class="text-[12rem] md:text-[16rem] font-bold leading-none select-none glitch mb-4" data-text="404">
-        404
-      </h1>
-
-      <p class="text-xl text-[var(--color-text-muted)] mb-8">
-        Esta página no existe
-      </p>
-
-      <a
-        href="/"
-        class="inline-block px-6 py-3 bg-[#7cb872] text-black font-medium rounded-lg hover:bg-[#6aa862] transition-colors cursor-pointer"
-      >
-        Volver al inicio
-      </a>
-    </div>
-  </main>
+<Layout title="Not found">
+  <h1 class="font-serif text-[40px] leading-[1.08] tracking-[-0.02em] sm:text-[64px]">
+    Nothing here.
+  </h1>
+  <p class="mt-12">→ <a href="/">Back home</a></p>
 </Layout>
-
-<style>
-  .glitch {
-    color: var(--color-text);
-    position: relative;
-  }
-
-  .glitch::before,
-  .glitch::after {
-    content: attr(data-text);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
-
-  .glitch::before {
-    color: #7cb872;
-    animation: glitch-1 0.3s infinite linear alternate-reverse;
-    clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
-    opacity: 0.8;
-  }
-
-  .glitch::after {
-    color: #ef4444;
-    animation: glitch-2 0.3s infinite linear alternate-reverse;
-    clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
-    opacity: 0.8;
-  }
-
-  @keyframes glitch-1 {
-    0%, 100% { transform: translate(0); }
-    20% { transform: translate(-2px, 2px); }
-    40% { transform: translate(-2px, -2px); }
-    60% { transform: translate(2px, 2px); }
-    80% { transform: translate(2px, -2px); }
-  }
-
-  @keyframes glitch-2 {
-    0%, 100% { transform: translate(0); }
-    20% { transform: translate(2px, -2px); }
-    40% { transform: translate(2px, 2px); }
-    60% { transform: translate(-2px, -2px); }
-    80% { transform: translate(-2px, 2px); }
-  }
-</style>

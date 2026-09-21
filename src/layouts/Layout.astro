@@ -1,67 +1,67 @@
 ---
-import "@styles/global.css";
-import { getLangFromUrl } from "@i18n/utils";
+import "@fontsource-variable/newsreader";
+import "@fontsource/ibm-plex-mono/400.css";
+import "@fontsource/ibm-plex-mono/400-italic.css";
+import "@fontsource/ibm-plex-mono/500.css";
+import "@/styles/global.css";
+import { SITE } from "@/site";
 
 interface Props {
-  title: string;
+  title?: string;
   description?: string;
 }
 
-const { title, description = "Roberto Salas - Software Engineer" } = Astro.props;
-const lang = getLangFromUrl(Astro.url);
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const { title, description = SITE.description } = Astro.props;
+const pageTitle = title ? `${title} — ${SITE.name}` : SITE.title;
+const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!doctype html>
-<html lang={lang}>
+<html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
     <meta name="description" content={description} />
-    <meta name="generator" content={Astro.generator} />
-
-    <link rel="canonical" href={canonicalURL} />
+    <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-
-    <!-- Preload fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet" />
-
-    <!-- Open Graph -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={canonicalURL} />
-    <meta property="og:title" content={title} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title={SITE.name}
+      href="/rss.xml"
+    />
+    <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
-    <meta property="og:locale" content={lang === "es" ? "es_MX" : "en_US"} />
-
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
-
-    <title>{title}</title>
-
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-X0BVNQZ1CV"></script>
-    <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-X0BVNQZ1CV');
-    </script>
-
-    <!-- Inline script to prevent theme flash -->
-    <script is:inline>
-      (function() {
-        const theme = localStorage.getItem('theme') || 'dark';
-        if (theme === 'dark') {
-          document.documentElement.classList.add('dark');
-        }
-      })();
-    </script>
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:type" content={title ? "article" : "website"} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="theme-color" content="#111111" />
   </head>
   <body>
-    <slot />
+    <div class="px-6 py-10 sm:px-18 sm:py-12">
+      <header>
+        <a
+          href="/"
+          class="font-serif text-[20px] no-underline hover:underline"
+          >roberto salas (aka beto)</a
+        >
+      </header>
+
+      <main class="mt-20 sm:mt-24">
+        <slot />
+      </main>
+
+      <footer class="mt-16 max-w-xl">
+        <p class="text-rule" aria-hidden="true">— — —</p>
+        <p class="mt-10">
+          Say hi.<br />
+          <a href={`mailto:${SITE.email}`} class="no-underline">{SITE.email}</a
+          ><span class="cursor-block" aria-hidden="true"></span>
+        </p>
+      </footer>
+    </div>
   </body>
 </html>

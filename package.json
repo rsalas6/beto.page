@@ -1,7 +1,8 @@
 {
   "name": "beto.page",
   "type": "module",
-  "version": "2.0.0",
+  "version": "3.0.0",
+  "private": true,
   "description": "Roberto Salas - Personal Website",
   "author": "Roberto Salas <hi@beto.page>",
   "license": "MIT",
@@ -12,30 +13,28 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro check && astro build",
-    "build:pdf": "astro build && node scripts/generate-pdf.js",
+    "build:pdf": "npm run build && node scripts/generate-pdf.js",
     "pdf": "node scripts/generate-pdf.js",
     "preview": "astro preview",
     "astro": "astro",
     "format": "prettier --write ."
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.6",
-    "@astrojs/mdx": "^4.3.13",
-    "@astrojs/sitemap": "^3.7.0",
-    "@tailwindcss/vite": "^4.1.18",
-    "astro": "^5.16.15",
-    "diff": "^8.0.3",
-    "diff2html": "^3.4.55",
-    "qr-code-styling": "^1.9.2",
-    "tailwindcss": "^4.1.18",
-    "typescript": "^5.9.3"
+    "@astrojs/check": "^0.9.10",
+    "@astrojs/rss": "^4.0.19",
+    "@astrojs/sitemap": "^3.7.4",
+    "@fontsource-variable/newsreader": "^5.3.0",
+    "@fontsource/ibm-plex-mono": "^5.3.0",
+    "@tailwindcss/typography": "^0.5.20",
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^7.3.3",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^6.0.3"
   },
   "devDependencies": {
-    "@tailwindcss/typography": "^0.5.19",
-    "prettier": "^3.8.1",
-    "prettier-plugin-astro": "^0.14.1",
-    "prettier-plugin-tailwindcss": "^0.7.2",
-    "puppeteer": "^24.36.1",
-    "serve-handler": "^6.1.6"
+    "prettier": "^3.9.8",
+    "prettier-plugin-astro": "^1.0.1",
+    "puppeteer": "^25.11.0",
+    "serve-handler": "^6.1.7"
   }
 }

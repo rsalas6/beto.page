@@ -1,6 +1,7 @@
 import puppeteer from 'puppeteer';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
+import { copyFileSync } from 'fs';
 import http from 'http';
 import handler from 'serve-handler';
 
@@ -28,19 +29,11 @@ async function generatePDF() {
     args: ['--no-sandbox', '--disable-setuid-sandbox']
   });
 
-  // Generate both Spanish and English versions
   const versions = [
     {
-      lang: 'es',
       filename: 'cv.pdf',
-      label: 'Spanish',
+      label: 'CV',
       url: 'http://localhost:4399/resume-print/'
-    },
-    {
-      lang: 'en',
-      filename: 'cv-en.pdf',
-      label: 'English',
-      url: 'http://localhost:4399/resume-print-en/'
     }
   ];
 
@@ -78,6 +71,9 @@ async function generatePDF() {
           left: '0.6in'
         }
       });
+
+      // dist/ was built before the PDF existed, so keep it in sync for previews/deploys.
+      copyFileSync(outputPath, join(distDir, version.filename));
 
       console.log(`✅ ${version.label} PDF: /public/${version.filename}`);
     } catch (error) {

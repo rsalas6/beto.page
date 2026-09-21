@@ -1,4 +1,4 @@
-import type { Lang } from "@i18n/languages";
+export type Lang = "es" | "en";
 
 export interface LocalizedString {
   es: string;
@@ -34,7 +34,9 @@ export interface Education {
   title: LocalizedString;
   institution: string;
   period: string;
+  /** Número de cédula profesional (SEP) */
   credential: string;
+  type: "bachelor" | "master";
 }
 
 export interface Project {
@@ -56,12 +58,4 @@ export interface Resume {
   education: Education[];
   projects: Project[];
   skills: Skill[];
-}
-
-// Helper to get localized value
-export function localized<T extends LocalizedString>(
-  obj: T,
-  lang: Lang
-): string {
-  return obj[lang] ?? obj.es;
 }
