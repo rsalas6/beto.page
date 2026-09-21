@@ -36,5 +36,8 @@
     "prettier-plugin-astro": "^1.0.1",
     "puppeteer": "^25.11.0",
     "serve-handler": "^6.1.7"
+  },
+  "engines": {
+    "node": ">=22.12.0"
   }
 }
