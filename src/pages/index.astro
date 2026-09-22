@@ -11,12 +11,25 @@ const posts = await getPosts();
   <h1
     class="font-serif text-[40px] leading-[1.08] tracking-[-0.02em] sm:text-[64px]"
   >
-    Building things,<br />writing them down.
+    Hi, I'm Beto.<br /><span id="tagline">{SITE.taglines[0]}</span>
   </h1>
+  <script is:inline define:vars={{ taglines: SITE.taglines }}>
+    // Pick a different tagline than the last one this tab saw.
+    let last = -1;
+    try {
+      last = Number(sessionStorage.getItem("tagline") ?? -1);
+    } catch {}
+    let i = Math.floor(Math.random() * taglines.length);
+    if (i === last) i = (i + 1) % taglines.length;
+    document.getElementById("tagline").textContent = taglines[i];
+    try {
+      sessionStorage.setItem("tagline", String(i));
+    } catch {}
+  </script>
 
   <p class="mt-12 max-w-xl">
-    I love building things. I've spent years creating systems, and these days
-    I'm building them with AI at the core.
+    Currently at micro1, teaching AI to be a little less wrong. Here you'll find
+    my thoughts, experiments, and the occasional glorious failure.
   </p>
 
   <ul class="mt-12 flex gap-6">

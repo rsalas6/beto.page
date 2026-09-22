@@ -4,6 +4,21 @@ export const SITE = {
   description:
     "Notes on software, security, and AI by Roberto Salas, a software engineer based in Mexico.",
   email: "hi@beto.page",
+  // Second line of the home title; one is picked at random on each load.
+  taglines: [
+    "I write bugs professionally.",
+    "I fix what I broke yesterday.",
+    "My code works. I don't know why.",
+    "I turn coffee into pull requests.",
+    "I delete code for fun.",
+    "I argue with robots for a living.",
+    "I teach AI to behave. Results vary.",
+    "The robots report to me. Allegedly.",
+    "I build pipelines. Mostly the software kind.",
+    "Engineer by day, overthinker by night.",
+    "I build stuff. Sometimes it ships.",
+    "Nice to meet you. Please don't read my old code.",
+  ],
   // Icon paths from Tabler Icons (MIT), 24x24 outline.
   links: [
     {
