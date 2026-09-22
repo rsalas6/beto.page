@@ -17,8 +17,19 @@
     -webkit-font-smoothing: antialiased;
   }
 
+  html {
+    @apply bg-ink;
+  }
+
   body {
-    @apply bg-ink font-mono text-[13.5px] leading-[1.9] text-paper;
+    @apply min-h-screen bg-ink font-mono text-[13.5px] leading-[1.9] text-paper;
+    /* Soft cyan light falling from the top-left corner. */
+    background-image: radial-gradient(
+      1200px 700px at 15% -10%,
+      rgb(60 200 220 / 0.15),
+      transparent 60%
+    );
+    background-repeat: no-repeat;
   }
 
   ::selection {

@@ -1,0 +1,33 @@
+---
+interface Item {
+  name: string;
+  detail: string;
+  period: string;
+  note?: string;
+}
+
+interface Props {
+  title: string;
+  items: Item[];
+}
+
+const { title, items } = Astro.props;
+---
+
+<section class="mt-16 max-w-xl" aria-label={title}>
+  <h2 class="font-serif text-[22px] italic">{title}</h2>
+  <ul class="mt-6 space-y-5">
+    {
+      items.map((item) => (
+        <li>
+          <div class="flex items-baseline justify-between gap-8">
+            <span>{item.name}</span>
+            <span class="shrink-0 text-muted tabular-nums">{item.period}</span>
+          </div>
+          <p class="text-muted">{item.detail}</p>
+          {item.note && <p class="text-muted">{item.note}</p>}
+        </li>
+      ))
+    }
+  </ul>
+</section>

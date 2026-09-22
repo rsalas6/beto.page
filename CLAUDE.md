@@ -2,7 +2,7 @@
 
 Sitio personal de Roberto Salas. Repo: `rsalas6/beto.page` (GitHub).
 
-Blog personal súper minimalista, **todo el sitio en inglés**. Estilo inspirado en tinycomputer.co: fondo `#111`, títulos en serif (Newsreader), cuerpo en mono (IBM Plex Mono), cursor parpadeante, listas con fecha a la derecha, separadores `— — —`.
+Blog personal súper minimalista, **todo el sitio en inglés**. Estilo inspirado en tinycomputer.co: fondo `#111` con una luz cian suave desde la esquina superior izquierda, títulos en serif (Newsreader), cuerpo en mono (IBM Plex Mono), cursor parpadeante, listas con fecha a la derecha, separadores `— — —`.
 
 ## Stack y estructura
 

@@ -1,10 +1,37 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import PostList from "@/components/PostList.astro";
+import Timeline from "@/components/Timeline.astro";
+import resume from "@data/resume.json";
 import { getPosts } from "@/lib/posts";
 import { SITE } from "@/site";
 
 const posts = await getPosts();
+
+// "06/2026 - Present" → "2026 – now", "2009 - 2014" → "2009 – 2014".
+const years = (period: string) =>
+  period
+    .split("-")
+    .map((part) => part.trim().replace(/^\d{2}\//, "").replace("Present", "now"))
+    .filter((part, i, all) => i === 0 || part !== all[0])
+    .join(" – ");
+
+const work = resume.experience.map((job) => ({
+  name: job.company,
+  detail: job.title.en,
+  period: years(job.period),
+}));
+
+const endYear = (period: string) => Number(period.slice(-4));
+
+const education = [...resume.education]
+  .sort((a, b) => endYear(b.period) - endYear(a.period))
+  .map((edu) => ({
+  name: edu.institution,
+  detail: edu.title.en,
+  period: years(edu.period),
+  note: `PL. ${edu.credential}`,
+}));
 ---
 
 <Layout>
@@ -40,6 +67,8 @@ const posts = await getPosts();
         <li>
           <a
             href={link.href}
+            target={"newTab" in link ? "_blank" : undefined}
+            rel={"newTab" in link ? "noopener" : undefined}
             aria-label={link.label}
             title={link.label}
             class="block text-muted no-underline transition-colors hover:text-paper"
@@ -70,10 +99,17 @@ const posts = await getPosts();
         <p class="mt-16 text-rule" aria-hidden="true">
           — — —
         </p>
-        <section class="mt-16" aria-label="Writing">
-          <PostList posts={posts} />
+        <section class="mt-16" aria-label="Blog">
+          <h2 class="font-serif text-[22px] italic">Blog</h2>
+          <div class="mt-6">
+            <PostList posts={posts} />
+          </div>
         </section>
       </>
     )
   }
+
+  <p class="mt-16 text-rule" aria-hidden="true">— — —</p>
+  <Timeline title="Work" items={work} />
+  <Timeline title="Education" items={education} />
 </Layout>

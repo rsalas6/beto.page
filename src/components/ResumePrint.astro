@@ -31,6 +31,8 @@ const labels = {
 
 const bachelors = education.filter((edu) => edu.type === "bachelor");
 const masters = education.filter((edu) => edu.type === "master");
+// Same trick as the site footer: keep the address out of the HTML source.
+const encodedEmail = btoa(personal.email.split("").reverse().join(""));
 ---
 
 <!doctype html>
@@ -314,7 +316,9 @@ const masters = education.filter((edu) => edu.type === "master");
       <div class="contact">
         <span class="contact-item">
           <i class="fa-solid fa-envelope contact-icon"></i>
-          <a href={`mailto:${personal.email}`}>{personal.email}</a>
+          <a id="email" data-e={encodedEmail}
+            >{personal.email.replace("@", " [at] ")}</a
+          >
         </span>
         <span class="separator">|</span>
         <span class="contact-item">
@@ -420,5 +424,11 @@ const masters = education.filter((edu) => edu.type === "master");
         }
       </div>
     </section>
+    <script is:inline>
+      const el = document.getElementById("email");
+      const email = atob(el.dataset.e).split("").reverse().join("");
+      el.href = "mailto:" + email;
+      el.textContent = email;
+    </script>
   </body>
 </html>
