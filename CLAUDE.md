@@ -6,11 +6,12 @@ Blog personal súper minimalista, **todo el sitio en inglés**. Estilo inspirado
 
 ## Stack y estructura
 
-- Astro 7 + Tailwind 4 (`@tailwindcss/vite`, `@tailwindcss/typography`). Casi sin JS en cliente: solo un script inline en la home que elige al azar la segunda línea del título (`SITE.taglines`).
+- Astro 7 + Tailwind 4 (`@tailwindcss/vite`, `@tailwindcss/typography`). JS en cliente solo donde hace falta: un script inline en la home que elige al azar la segunda línea del título (`SITE.taglines`) y los scripts de `/tools/`.
 - `src/site.ts` — nombre, descripción, email y enlaces de la home.
 - `src/content/posts/*.md` — posts. Con cuerpo → página en `/posts/<id>/`. Solo frontmatter → "nota" de una línea sin enlace. `draft: true` los oculta.
 - `src/styles/global.css` — tokens (`ink`, `paper`, `muted`, `rule`) y `cursor-block`.
 - `/rss.xml` y sitemap (excluye `/resume-print*`).
+- `/tools/` — herramientas minimalistas que corren en el navegador: `qr` (lib `qrcode`, descarga PNG/SVG), `string` (case, slug, base64, URL) y `diff` (lib `diff`, por líneas). Comparten `ToolLayout.astro` y las clases `.field` / `.btn` de `global.css`.
 
 ## CV (PDF)
 

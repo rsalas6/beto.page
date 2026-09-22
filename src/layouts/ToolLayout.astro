@@ -1,0 +1,23 @@
+---
+import Layout from "@/layouts/Layout.astro";
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<Layout title={title} description={description}>
+  <p><a href="/tools/" class="text-muted no-underline hover:text-paper">← tools</a></p>
+  <h1
+    class="mt-8 font-serif text-[40px] leading-[1.1] tracking-[-0.02em] sm:text-[56px]"
+  >
+    {title}
+  </h1>
+  <p class="mt-6 max-w-xl text-muted">{description}</p>
+  <div class="mt-12">
+    <slot />
+  </div>
+</Layout>

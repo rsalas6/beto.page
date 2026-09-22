@@ -1,0 +1,95 @@
+---
+import ToolLayout from "@/layouts/ToolLayout.astro";
+---
+
+<ToolLayout
+  title="Diff"
+  description="Paste two versions and see what changed, line by line."
+>
+  <div class="grid gap-6 sm:grid-cols-2">
+    <textarea
+      id="diff-a"
+      class="field min-h-56"
+      rows="10"
+      placeholder="Before"
+      spellcheck="false"></textarea>
+    <textarea
+      id="diff-b"
+      class="field min-h-56"
+      rows="10"
+      placeholder="After"
+      spellcheck="false"></textarea>
+  </div>
+
+  <p class="mt-5 flex flex-wrap items-center gap-2">
+    <button id="diff-swap" class="btn">swap</button>
+    <button id="diff-clear" class="btn">clear</button>
+    <span id="diff-stats" class="ml-3 text-muted"></span>
+  </p>
+
+  <pre
+    id="diff-output"
+    class="mt-10 hidden overflow-x-auto border border-rule py-3 text-[13px] leading-[1.7]"></pre>
+</ToolLayout>
+
+<script>
+  import { diffLines } from "diff";
+
+  const a = document.getElementById("diff-a") as HTMLTextAreaElement;
+  const b = document.getElementById("diff-b") as HTMLTextAreaElement;
+  const output = document.getElementById("diff-output") as HTMLPreElement;
+  const stats = document.getElementById("diff-stats") as HTMLSpanElement;
+
+  function line(text: string, kind: "add" | "del" | "same") {
+    const row = document.createElement("div");
+    row.className =
+      kind === "add"
+        ? "bg-white/10 px-4"
+        : kind === "del"
+          ? "px-4 text-muted line-through decoration-muted"
+          : "px-4 text-muted";
+    row.textContent = `${kind === "add" ? "+" : kind === "del" ? "-" : " "} ${text}`;
+    return row;
+  }
+
+  function render() {
+    if (!a.value && !b.value) {
+      output.classList.add("hidden");
+      stats.textContent = "";
+      return;
+    }
+
+    let added = 0;
+    let removed = 0;
+    const rows: HTMLDivElement[] = [];
+
+    // Normalize the trailing newline so "three" and "three\n" compare equal.
+    const withNewline = (s: string) => (s && !s.endsWith("\n") ? s + "\n" : s);
+
+    for (const part of diffLines(withNewline(a.value), withNewline(b.value))) {
+      const lines = part.value.replace(/\n$/, "").split("\n");
+      const kind = part.added ? "add" : part.removed ? "del" : "same";
+      if (kind === "add") added += lines.length;
+      if (kind === "del") removed += lines.length;
+      for (const text of lines) rows.push(line(text, kind));
+    }
+
+    output.replaceChildren(...rows);
+    output.classList.remove("hidden");
+    stats.textContent =
+      added || removed ? `+${added} −${removed}` : "no differences";
+  }
+
+  document.getElementById("diff-swap")!.addEventListener("click", () => {
+    [a.value, b.value] = [b.value, a.value];
+    render();
+  });
+
+  document.getElementById("diff-clear")!.addEventListener("click", () => {
+    a.value = b.value = "";
+    render();
+  });
+
+  a.addEventListener("input", render);
+  b.addEventListener("input", render);
+</script>

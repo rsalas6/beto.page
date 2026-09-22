@@ -1,0 +1,33 @@
+---
+import Layout from "@/layouts/Layout.astro";
+
+const tools = [
+  { href: "/tools/qr/", name: "QR", note: "text or URL to QR" },
+  { href: "/tools/string/", name: "String", note: "case, base64, URL" },
+  { href: "/tools/diff/", name: "Diff", note: "compare two texts" },
+];
+---
+
+<Layout title="Tools" description="Small, simple tools for everyday work.">
+  <h1
+    class="font-serif text-[40px] leading-[1.08] tracking-[-0.02em] sm:text-[64px]"
+  >
+    Tools.
+  </h1>
+  <p class="mt-12 max-w-xl">
+    Small things I use all the time. Everything runs in your browser.
+  </p>
+
+  <ul class="mt-16 max-w-xl space-y-5">
+    {
+      tools.map((tool) => (
+        <li class="flex items-baseline justify-between gap-8">
+          <span>
+            → <a href={tool.href}>{tool.name}</a>
+          </span>
+          <span class="text-muted">{tool.note}</span>
+        </li>
+      ))
+    }
+  </ul>
+</Layout>

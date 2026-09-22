@@ -1,0 +1,79 @@
+---
+import ToolLayout from "@/layouts/ToolLayout.astro";
+---
+
+<ToolLayout title="QR" description="Type text or paste a URL. That's it.">
+  <div class="grid max-w-3xl gap-10 sm:grid-cols-[1fr_auto]">
+    <textarea
+      id="qr-input"
+      class="field min-h-40"
+      rows="5"
+      placeholder="https://beto.page"
+      spellcheck="false"
+      autofocus></textarea>
+
+    <div>
+      <div
+        id="qr-output"
+        class="flex size-60 items-center justify-center border border-rule text-muted"
+      >
+        <span id="qr-empty">nothing yet</span>
+      </div>
+      <p class="mt-5 flex flex-wrap items-center gap-2">
+        <button id="qr-png" class="btn" disabled>png</button>
+        <button id="qr-svg" class="btn" disabled>svg</button>
+      </p>
+    </div>
+  </div>
+</ToolLayout>
+
+<script>
+  import QRCode from "qrcode";
+
+  const input = document.getElementById("qr-input") as HTMLTextAreaElement;
+  const output = document.getElementById("qr-output") as HTMLDivElement;
+  const empty = document.getElementById("qr-empty") as HTMLSpanElement;
+  const png = document.getElementById("qr-png") as HTMLButtonElement;
+  const svg = document.getElementById("qr-svg") as HTMLButtonElement;
+
+  const options = {
+    margin: 2,
+    errorCorrectionLevel: "M" as const,
+    color: { dark: "#111111", light: "#ffffff" },
+  };
+
+  let current = "";
+
+  async function render() {
+    current = input.value.trim();
+    png.disabled = svg.disabled = !current;
+    if (!current) {
+      output.replaceChildren(empty);
+      return;
+    }
+    const markup = await QRCode.toString(current, { ...options, type: "svg" });
+    output.innerHTML = markup;
+    output.querySelector("svg")?.setAttribute("class", "size-full");
+  }
+
+  function download(href: string, name: string) {
+    const a = document.createElement("a");
+    a.href = href;
+    a.download = name;
+    a.click();
+  }
+
+  png.addEventListener("click", async () => {
+    const url = await QRCode.toDataURL(current, { ...options, width: 1024 });
+    download(url, "qr.png");
+  });
+
+  svg.addEventListener("click", async () => {
+    const markup = await QRCode.toString(current, { ...options, type: "svg" });
+    const url = URL.createObjectURL(new Blob([markup], { type: "image/svg+xml" }));
+    download(url, "qr.svg");
+    URL.revokeObjectURL(url);
+  });
+
+  input.addEventListener("input", render);
+</script>

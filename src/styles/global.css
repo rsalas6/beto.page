@@ -7,8 +7,8 @@
 
   --color-ink: #111111;
   --color-paper: rgb(255 255 255 / 0.93);
-  --color-muted: rgb(255 255 255 / 0.45);
-  --color-rule: rgb(255 255 255 / 0.25);
+  --color-muted: rgb(255 255 255 / 0.6);
+  --color-rule: rgb(255 255 255 / 0.3);
 }
 
 @layer base {
@@ -27,6 +27,16 @@
 
   a {
     @apply underline decoration-rule underline-offset-4 transition-colors hover:decoration-paper;
+  }
+}
+
+@layer components {
+  .field {
+    @apply block w-full resize-y rounded-none border border-rule bg-transparent p-4 font-mono text-[13.5px] leading-[1.7] text-paper placeholder:text-white/40 focus:border-paper focus:outline-none;
+  }
+
+  .btn {
+    @apply cursor-pointer border border-white/30 px-3 py-1.5 leading-none text-paper transition-colors hover:border-paper hover:bg-paper hover:text-ink active:opacity-80 disabled:cursor-default disabled:opacity-35 disabled:hover:border-white/30 disabled:hover:bg-transparent disabled:hover:text-paper;
   }
 }
 

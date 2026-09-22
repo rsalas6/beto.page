@@ -1,0 +1,145 @@
+---
+import ToolLayout from "@/layouts/ToolLayout.astro";
+
+const actions = [
+  ["upper", "UPPER"],
+  ["lower", "lower"],
+  ["title", "Title"],
+  ["camel", "camelCase"],
+  ["snake", "snake_case"],
+  ["kebab", "kebab-case"],
+  ["slug", "slug"],
+  ["trim", "trim"],
+  ["b64e", "base64 ↑"],
+  ["b64d", "base64 ↓"],
+  ["urle", "url ↑"],
+  ["urld", "url ↓"],
+];
+---
+
+<ToolLayout
+  title="String"
+  description="Paste text, pick a transform. ↑ encodes, ↓ decodes."
+>
+  <div class="max-w-3xl">
+    <textarea
+      id="str-input"
+      class="field min-h-40"
+      rows="6"
+      placeholder="Paste something here"
+      spellcheck="false"
+      autofocus></textarea>
+    <p id="str-stats" class="mt-3 text-muted">0 chars · 0 words · 0 lines</p>
+
+    <p class="mt-8 flex flex-wrap gap-2">
+      {
+        actions.map(([id, label]) => (
+          <button class="btn" data-action={id}>
+            {label}
+          </button>
+        ))
+      }
+    </p>
+
+    <textarea
+      id="str-output"
+      class="field mt-8 min-h-40"
+      rows="6"
+      readonly
+      placeholder="Result"></textarea>
+    <p class="mt-5 flex flex-wrap items-center gap-2">
+      <button id="str-copy" class="btn">copy</button>
+      <button id="str-use" class="btn">use as input</button>
+      <button id="str-clear" class="btn">clear</button>
+    </p>
+  </div>
+</ToolLayout>
+
+<script>
+  const input = document.getElementById("str-input") as HTMLTextAreaElement;
+  const output = document.getElementById("str-output") as HTMLTextAreaElement;
+  const stats = document.getElementById("str-stats") as HTMLParagraphElement;
+  const copy = document.getElementById("str-copy") as HTMLButtonElement;
+
+  const words = (s: string) =>
+    s
+      .normalize("NFD")
+      .replace(/[̀-ͯ]/g, "")
+      .replace(/([a-z0-9])([A-Z])/g, "$1 $2")
+      .split(/[^A-Za-z0-9]+/)
+      .filter(Boolean)
+      .map((w) => w.toLowerCase());
+
+  const capitalize = (w: string) => w.charAt(0).toUpperCase() + w.slice(1);
+
+  const safe = (fn: (s: string) => string) => (s: string) => {
+    try {
+      return fn(s);
+    } catch {
+      return "Error: invalid input";
+    }
+  };
+
+  const transforms: Record<string, (s: string) => string> = {
+    upper: (s) => s.toUpperCase(),
+    lower: (s) => s.toLowerCase(),
+    title: (s) => s.toLowerCase().replace(/(^|\s)\S/g, (c) => c.toUpperCase()),
+    camel: (s) =>
+      words(s)
+        .map((w, i) => (i ? capitalize(w) : w))
+        .join(""),
+    snake: (s) => words(s).join("_"),
+    kebab: (s) => words(s).join("-"),
+    slug: (s) => words(s).join("-"),
+    trim: (s) =>
+      s
+        .split("\n")
+        .map((l) => l.trim())
+        .join("\n")
+        .trim(),
+    b64e: safe((s) => {
+      const bytes = new TextEncoder().encode(s);
+      return btoa(String.fromCharCode(...bytes));
+    }),
+    b64d: safe((s) => {
+      const bytes = Uint8Array.from(atob(s.trim()), (c) => c.charCodeAt(0));
+      return new TextDecoder("utf-8", { fatal: true }).decode(bytes);
+    }),
+    urle: (s) => encodeURIComponent(s),
+    urld: safe((s) => decodeURIComponent(s)),
+  };
+
+  function updateStats() {
+    const text = input.value;
+    const w = text.trim() ? text.trim().split(/\s+/).length : 0;
+    const l = text ? text.split("\n").length : 0;
+    const n = (count: number, word: string) =>
+      `${count} ${word}${count === 1 ? "" : "s"}`;
+    stats.textContent = [n(text.length, "char"), n(w, "word"), n(l, "line")].join(" · ");
+  }
+
+  document.querySelectorAll<HTMLButtonElement>("[data-action]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      output.value = transforms[btn.dataset.action!](input.value);
+    });
+  });
+
+  copy.addEventListener("click", async () => {
+    await navigator.clipboard.writeText(output.value);
+    copy.textContent = "copied";
+    setTimeout(() => (copy.textContent = "copy"), 1200);
+  });
+
+  document.getElementById("str-use")!.addEventListener("click", () => {
+    input.value = output.value;
+    output.value = "";
+    updateStats();
+  });
+
+  document.getElementById("str-clear")!.addEventListener("click", () => {
+    input.value = output.value = "";
+    updateStats();
+  });
+
+  input.addEventListener("input", updateStats);
+</script>
