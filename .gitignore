@@ -32,8 +32,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Claude & AI
-.claude/
+# Claude & AI (skills are part of the project and do get committed)
+.claude/*
+!.claude/skills/
 .agents/
 
 # Cache
@@ -46,6 +47,6 @@ coverage/
 # Misc
 *.local
 
-# Claude
-.claude/
-.agents/
+
+# Local research repos (separate git repos, not part of the site)
+research/
