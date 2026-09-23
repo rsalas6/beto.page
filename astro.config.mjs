@@ -8,7 +8,7 @@ export default defineConfig({
   integrations: [
     sitemap({
       // The print pages only exist to generate the CV PDFs.
-      filter: (page) => !page.includes("/resume-print"),
+      filter: (page) => !page.includes("/resume-print") && !page.includes("/og/"),
     }),
   ],
   vite: {

@@ -42,6 +42,17 @@
 }
 
 @layer components {
+  /* Links that leave the site say so, inside post bodies. */
+  .prose a[target="_blank"]::after {
+    content: "↗";
+    display: inline-block;
+    margin-left: 0.15em;
+    font-size: 0.8em;
+    line-height: 1;
+    vertical-align: super;
+    text-decoration: none;
+  }
+
   .field {
     @apply block w-full resize-y rounded-none border border-rule bg-transparent p-4 font-mono text-[13.5px] leading-[1.7] text-paper placeholder:text-white/40 focus:border-paper focus:outline-none;
   }

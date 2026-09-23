@@ -1,0 +1,94 @@
+---
+import "@fontsource-variable/newsreader";
+import "@fontsource/ibm-plex-mono/400.css";
+import { getPosts, hasPage, longDate, type Post } from "@/lib/posts";
+import { SITE } from "@/site";
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  const pages = posts
+    .filter(hasPage)
+    .map((post) => ({ params: { id: post.id }, props: { post } }));
+
+  // The card used for the home page and anything without its own image.
+  return [...pages, { params: { id: "default" }, props: { post: undefined } }];
+}
+
+interface Props {
+  post?: Post;
+}
+
+const { post } = Astro.props;
+const title = post ? post.data.title : "Building things, writing them down.";
+const meta = post
+  ? [longDate(post.data.date), ...post.data.tags.map((tag) => `#${tag}`)].join("  ·  ")
+  : "Notes, experiments and the occasional glorious failure";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex" />
+    <title>{title}</title>
+    <style is:global>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      /* Exactly the Open Graph size. The screenshot script uses this viewport. */
+      body {
+        width: 1200px;
+        height: 630px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 72px 80px;
+        background-color: #111;
+        background-image: radial-gradient(
+          1000px 600px at 12% -15%,
+          rgb(60 200 220 / 0.22),
+          transparent 60%
+        );
+        color: rgb(255 255 255 / 0.93);
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 24px;
+      }
+
+      h1 {
+        font-family: "Newsreader Variable", Georgia, serif;
+        font-size: 76px;
+        font-weight: 400;
+        line-height: 1.08;
+        letter-spacing: -0.02em;
+        max-width: 17ch;
+      }
+
+      .top,
+      .bottom {
+        display: flex;
+        justify-content: space-between;
+        color: rgb(255 255 255 / 0.6);
+      }
+
+      .name {
+        font-family: "Newsreader Variable", Georgia, serif;
+        font-size: 30px;
+        color: rgb(255 255 255 / 0.93);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="top">
+      <span class="name">roberto salas</span>
+      <span>beto.page</span>
+    </div>
+    <h1>{title}</h1>
+    <div class="bottom">
+      <span>{meta}</span>
+      <span>{SITE.email.replace("@", " [at] ")}</span>
+    </div>
+  </body>
+</html>

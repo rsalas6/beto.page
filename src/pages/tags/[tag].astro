@@ -1,0 +1,35 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import PostList from "@/components/PostList.astro";
+import { getTags, type Post } from "@/lib/posts";
+
+export async function getStaticPaths() {
+  const tags = await getTags();
+  return tags.map(({ tag, posts }) => ({ params: { tag }, props: { tag, posts } }));
+}
+
+interface Props {
+  tag: string;
+  posts: Post[];
+}
+
+const { tag, posts } = Astro.props;
+---
+
+<Layout
+  title={`#${tag}`}
+  description={`Posts tagged ${tag} on beto.page.`}
+>
+  <h1
+    class="font-serif text-[40px] leading-[1.08] tracking-[-0.02em] sm:text-[64px]"
+  >
+    #{tag}
+  </h1>
+  <p class="mt-12 text-muted">
+    {posts.length} {posts.length === 1 ? "post" : "posts"}
+  </p>
+
+  <div class="mt-12">
+    <PostList posts={posts} />
+  </div>
+</Layout>

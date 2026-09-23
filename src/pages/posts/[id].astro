@@ -18,19 +18,36 @@ const { post } = Astro.props;
 const { Content } = await render(post);
 ---
 
-<Layout title={post.data.title} description={post.data.description}>
+<Layout title={post.data.title} description={post.data.description} ogId={post.id}>
   <article>
     <h1
       class="max-w-3xl font-serif text-[40px] leading-[1.1] tracking-[-0.02em] sm:text-[56px]"
     >
       {post.data.title}
     </h1>
-    <time
-      datetime={post.data.date.toISOString()}
-      class="mt-8 block text-muted"
-    >
-      {longDate(post.data.date)}
-    </time>
+    <p class="mt-8 flex flex-wrap items-baseline gap-x-4 text-muted">
+      <time datetime={post.data.date.toISOString()}>{longDate(post.data.date)}</time>
+      {
+        post.data.tags.map((tag) => (
+          <a href={`/tags/${tag}/`} class="no-underline hover:text-paper">
+            #{tag}
+          </a>
+        ))
+      }
+    </p>
+
+    {
+      post.data.image && (
+        <img
+          src={post.data.image}
+          alt={post.data.imageAlt ?? ""}
+          class="mt-12 w-full max-w-3xl border border-rule"
+          width="1200"
+          height="630"
+          loading="eager"
+        />
+      )
+    }
 
     <div
       class="prose prose-invert mt-16 max-w-xl font-mono text-[13.5px] leading-[1.9] prose-headings:font-serif prose-headings:font-normal prose-headings:tracking-tight prose-h2:text-3xl prose-h3:text-2xl prose-a:font-normal prose-a:decoration-rule prose-a:underline-offset-4 hover:prose-a:decoration-paper prose-code:font-normal prose-code:text-[1em] prose-code:before:content-none prose-code:after:content-none prose-pre:rounded-none prose-pre:bg-white/5"

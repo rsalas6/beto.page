@@ -15,6 +15,7 @@
     "build": "astro check && astro build",
     "build:pdf": "npm run build && node scripts/generate-pdf.js",
     "pdf": "node scripts/generate-pdf.js",
+    "og": "npm run build && node scripts/generate-og.js",
     "preview": "astro preview",
     "astro": "astro",
     "format": "prettier --write ."

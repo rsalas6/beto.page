@@ -8,18 +8,13 @@ import { SITE } from "@/site";
 
 const posts = await getPosts();
 
-// "06/2026 - Present" → "2026 – now", "2009 - 2014" → "2009 – 2014".
-const years = (period: string) =>
-  period
-    .split("-")
-    .map((part) => part.trim().replace(/^\d{2}\//, "").replace("Present", "now"))
-    .filter((part, i, all) => i === 0 || part !== all[0])
-    .join(" – ");
+// The list shows the year each thing started. Full dates live in the CV.
+const startYear = (period: string) => period.split("-")[0].trim().slice(-4);
 
 const work = resume.experience.map((job) => ({
   name: job.company,
   detail: job.title.en,
-  period: years(job.period),
+  period: startYear(job.period),
 }));
 
 const endYear = (period: string) => Number(period.slice(-4));
@@ -27,18 +22,18 @@ const endYear = (period: string) => Number(period.slice(-4));
 const education = [...resume.education]
   .sort((a, b) => endYear(b.period) - endYear(a.period))
   .map((edu) => ({
-  name: edu.institution,
-  detail: edu.title.en,
-  period: years(edu.period),
-  note: `PL. ${edu.credential}`,
-}));
+    name: edu.institution,
+    detail: edu.title.en,
+    period: startYear(edu.period),
+    note: `PL. ${edu.credential}`,
+  }));
 ---
 
 <Layout>
-  <h1
-    class="font-serif text-[40px] leading-[1.08] tracking-[-0.02em] sm:text-[64px]"
-  >
-    Hi, I'm Beto.<br /><span id="tagline">{SITE.taglines[0]}</span>
+  <h1 class="font-serif text-[40px] leading-[1.08] tracking-[-0.02em] sm:text-[64px]">
+    Hi, I'm Beto.
+    <br />
+    <span id="tagline">{SITE.taglines[0]}</span>
   </h1>
   <script is:inline define:vars={{ taglines: SITE.taglines }}>
     // Pick a different tagline than the last one this tab saw.
@@ -53,63 +48,62 @@ const education = [...resume.education]
       sessionStorage.setItem("tagline", String(i));
     } catch {}
   </script>
-
   <p class="mt-12 max-w-xl">
-    Currently at <a href="https://www.micro1.ai/" target="_blank" rel="noopener"
-      >micro1</a
-    >, teaching AI to be a little less wrong. Here you'll find
-    my thoughts, experiments, and the occasional glorious failure.
+    Currently at{" "}
+    <a href="https://www.micro1.ai/" target="_blank" rel="noopener">
+      micro1
+    </a>
+    , teaching AI to be a little less wrong. Here you'll find my thoughts,
+    experiments, and the occasional glorious failure.
   </p>
 
   <ul class="mt-12 flex gap-6">
-    {
-      SITE.links.map((link) => (
-        <li>
-          <a
-            href={link.href}
-            target={"newTab" in link ? "_blank" : undefined}
-            rel={"newTab" in link ? "noopener" : undefined}
-            aria-label={link.label}
-            title={link.label}
-            class="block text-muted no-underline transition-colors hover:text-paper"
+    {SITE.links.map((link) => (
+      <li>
+        <a
+          href={link.href}
+          target={"newTab" in link ? "_blank" : undefined}
+          rel={"newTab" in link ? "noopener" : undefined}
+          aria-label={link.label}
+          title={link.label}
+          class="block text-muted no-underline transition-colors hover:text-paper"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            class="size-5"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
           >
-            <svg
-              viewBox="0 0 24 24"
-              class="size-5"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              aria-hidden="true"
-            >
-              {link.icon.map((d) => (
-                <path d={d} />
-              ))}
-            </svg>
-          </a>
-        </li>
-      ))
-    }
+            {link.icon.map((d) => (
+              <path d={d} />
+            ))}
+          </svg>
+        </a>
+      </li>
+    ))}
   </ul>
 
-  {
-    posts.length > 0 && (
-      <>
-        <p class="mt-16 text-rule" aria-hidden="true">
-          — — —
-        </p>
-        <section class="mt-16" aria-label="Blog">
-          <h2 class="font-serif text-[22px] italic">Blog</h2>
-          <div class="mt-6">
-            <PostList posts={posts} />
-          </div>
-        </section>
-      </>
-    )
-  }
+  {posts.length > 0 && (
+    <>
+      <p class="mt-16 text-rule" aria-hidden="true">
+        — — —
+      </p>
+      <section class="mt-16" aria-label="Blog">
+        <h2 class="font-serif text-[22px] italic">Blog</h2>
+        <div class="mt-6">
+          <PostList posts={posts} />
+        </div>
+      </section>
+    </>
+  )}
 
-  <p class="mt-16 text-rule" aria-hidden="true">— — —</p>
+  <p class="mt-16 text-rule" aria-hidden="true">
+    — — —
+  </p>
   <Timeline title="Work" items={work} />
   <Timeline title="Education" items={education} />
 </Layout>

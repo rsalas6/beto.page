@@ -10,6 +10,10 @@ const posts = defineCollection({
     title: z.string(),
     date: z.coerce.date(),
     description: z.string().optional(),
+    tags: z.array(z.string()).default([]),
+    // A black and white comic strip at the top of the post.
+    image: z.string().optional(),
+    imageAlt: z.string().optional(),
     draft: z.boolean().default(false),
   }),
 });
