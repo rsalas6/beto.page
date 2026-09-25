@@ -14,18 +14,18 @@ interface Props {
 const { title, items } = Astro.props;
 ---
 
-<section class="mt-16 max-w-xl" aria-label={title}>
-  <h2 class="font-serif text-[22px] italic">{title}</h2>
-  <ul class="mt-6 space-y-5">
+<section class="mt-20" aria-label={title}>
+  <h2 class="text-center font-serif text-[24px] italic">{title}</h2>
+  <ul class="mx-auto mt-8 max-w-[34rem] space-y-6">
     {
       items.map((item) => (
         <li>
           <div class="flex items-baseline justify-between gap-8">
             <span>{item.name}</span>
-            <span class="shrink-0 text-muted tabular-nums">{item.period}</span>
+            <span class="detail shrink-0 tabular-nums">{item.period}</span>
           </div>
-          <p class="text-muted">{item.detail}</p>
-          {item.note && <p class="text-muted">{item.note}</p>}
+          <p class="text-[18px] text-muted">{item.detail}</p>
+          {item.note && <p class="detail">{item.note}</p>}
         </li>
       ))
     }

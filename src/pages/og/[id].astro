@@ -1,5 +1,6 @@
 ---
 import "@fontsource-variable/newsreader";
+import "@fontsource-variable/outfit";
 import "@fontsource/ibm-plex-mono/400.css";
 import { getPosts, hasPage, longDate, type Post } from "@/lib/posts";
 import { SITE } from "@/site";
@@ -46,21 +47,16 @@ const meta = post
         flex-direction: column;
         justify-content: space-between;
         padding: 72px 80px;
-        background-color: #111;
-        background-image: radial-gradient(
-          1000px 600px at 12% -15%,
-          rgb(60 200 220 / 0.22),
-          transparent 60%
-        );
-        color: rgb(255 255 255 / 0.93);
+        background-color: #14130f;
+        color: #f2efe7;
         font-family: "IBM Plex Mono", monospace;
         font-size: 24px;
       }
 
       h1 {
         font-family: "Newsreader Variable", Georgia, serif;
-        font-size: 76px;
-        font-weight: 400;
+        font-size: 72px;
+        font-weight: 300;
         line-height: 1.08;
         letter-spacing: -0.02em;
         max-width: 17ch;
@@ -70,13 +66,14 @@ const meta = post
       .bottom {
         display: flex;
         justify-content: space-between;
-        color: rgb(255 255 255 / 0.6);
+        color: #9b978c;
+        font-size: 22px;
       }
 
       .name {
-        font-family: "Newsreader Variable", Georgia, serif;
-        font-size: 30px;
-        color: rgb(255 255 255 / 0.93);
+        font-family: "Outfit Variable", system-ui, sans-serif;
+        font-size: 26px;
+        color: #f2efe7;
       }
     </style>
   </head>

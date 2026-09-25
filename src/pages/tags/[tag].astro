@@ -21,11 +21,11 @@ const { tag, posts } = Astro.props;
   description={`Posts tagged ${tag} on beto.page.`}
 >
   <h1
-    class="font-serif text-[40px] leading-[1.08] tracking-[-0.02em] sm:text-[64px]"
+    class="text-center font-serif text-[38px] leading-[1.15] font-light tracking-[-0.01em] sm:text-[52px]"
   >
     #{tag}
   </h1>
-  <p class="mt-12 text-muted">
+  <p class="detail mt-8 text-center">
     {posts.length} {posts.length === 1 ? "post" : "posts"}
   </p>
 

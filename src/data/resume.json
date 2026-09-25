@@ -66,8 +66,8 @@
     },
     {
       "title": {
-        "es": "Desarrollador Full Stack",
-        "en": "Full Stack Developer"
+        "es": "Ingeniero de Software",
+        "en": "Software Engineer"
       },
       "company": "Distritomkt",
       "period": "01/2021 - 06/2026",
@@ -87,8 +87,8 @@
     },
     {
       "title": {
-        "es": "Desarrollador Full Stack",
-        "en": "Full Stack Developer"
+        "es": "Ingeniero de Software",
+        "en": "Software Engineer"
       },
       "company": "Autoproyecto",
       "period": "05/2019 - 12/2020",
@@ -197,35 +197,66 @@
         "es": "Lenguajes",
         "en": "Languages"
       },
-      "items": ["Python", "JavaScript/TypeScript", "PHP", "Bash", "Go", "SQL"]
+      "items": [
+        "Python",
+        "JavaScript/TypeScript",
+        "PHP",
+        "Bash",
+        "Go",
+        "SQL"
+      ]
     },
     {
       "label": {
         "es": "Frontend",
         "en": "Frontend"
       },
-      "items": ["Vue.js", "Nuxt", "Astro", "React", "Tailwind CSS"]
+      "items": [
+        "Vue.js",
+        "Nuxt",
+        "Astro",
+        "React",
+        "Tailwind CSS"
+      ]
     },
     {
       "label": {
         "es": "Backend",
         "en": "Backend"
       },
-      "items": ["Node.js", "FastAPI", "Django", "Flask", "Express"]
+      "items": [
+        "Node.js",
+        "FastAPI",
+        "Django",
+        "Flask",
+        "Express"
+      ]
     },
     {
       "label": {
         "es": "Herramientas",
         "en": "Tools"
       },
-      "items": ["Git", "Docker", "Kubernetes", "AWS", "GCP", "Linux"]
+      "items": [
+        "Git",
+        "Docker",
+        "Kubernetes",
+        "AWS",
+        "GCP",
+        "Linux"
+      ]
     },
     {
       "label": {
         "es": "Intereses",
         "en": "Interests"
       },
-      "items": ["Cybersecurity", "Data Science", "AI/ML", "API Design"]
+      "items": [
+        "Cybersecurity",
+        "Data Science",
+        "AI/ML",
+        "API Design"
+      ]
     }
   ]
 }

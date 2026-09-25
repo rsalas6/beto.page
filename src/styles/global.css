@@ -1,44 +1,66 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
-@theme {
+/* Light is paper, dark is ink. The theme follows the system unless the
+   toggle in the header has set data-theme on <html>. */
+:root {
+  --bg: #faf8f4;
+  --fg: #1b1a17;
+  --muted: #77736b;
+  --rule: #e2ded4;
+  --shade: rgb(27 26 23 / 0.04);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #14130f;
+    --fg: #f2efe7;
+    --muted: #9b978c;
+    --rule: #2c2a24;
+    --shade: rgb(242 239 231 / 0.06);
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #14130f;
+  --fg: #f2efe7;
+  --muted: #9b978c;
+  --rule: #2c2a24;
+  --shade: rgb(242 239 231 / 0.06);
+}
+
+@theme inline {
+  /* Outfit for reading, Newsreader for headings. */
+  --font-sans: "Outfit Variable", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Newsreader Variable", ui-serif, Georgia, serif;
   --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
 
-  --color-ink: #111111;
-  --color-paper: rgb(255 255 255 / 0.93);
-  --color-muted: rgb(255 255 255 / 0.6);
-  --color-rule: rgb(255 255 255 / 0.3);
+  --color-bg: var(--bg);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-rule: var(--rule);
+  --color-shade: var(--shade);
 }
 
 @layer base {
   html {
-    color-scheme: dark;
+    @apply bg-bg;
+    color-scheme: light dark;
     -webkit-font-smoothing: antialiased;
   }
 
-  html {
-    @apply bg-ink;
-  }
-
   body {
-    @apply min-h-screen bg-ink font-mono text-[13.5px] leading-[1.9] text-paper;
-    /* Soft cyan light falling from the top-left corner. */
-    background-image: radial-gradient(
-      1200px 700px at 15% -10%,
-      rgb(60 200 220 / 0.15),
-      transparent 60%
-    );
-    background-repeat: no-repeat;
+    @apply min-h-screen bg-bg font-sans text-[19px] leading-[1.8] font-light text-fg;
   }
 
   ::selection {
-    @apply bg-paper text-ink;
+    @apply bg-fg text-bg;
   }
 
   a {
-    @apply underline decoration-rule underline-offset-4 transition-colors hover:decoration-paper;
+    @apply underline decoration-rule underline-offset-4 transition-colors hover:decoration-fg;
   }
+
 }
 
 @layer components {
@@ -46,19 +68,57 @@
   .prose a[target="_blank"]::after {
     content: "↗";
     display: inline-block;
-    margin-left: 0.15em;
-    font-size: 0.8em;
+    margin-left: 0.12em;
+    font-family: var(--font-mono);
+    font-size: 0.5em;
     line-height: 1;
-    vertical-align: super;
+    vertical-align: 0.55em;
     text-decoration: none;
+    opacity: 0.7;
   }
 
   .field {
-    @apply block w-full resize-y rounded-none border border-rule bg-transparent p-4 font-mono text-[13.5px] leading-[1.7] text-paper placeholder:text-white/40 focus:border-paper focus:outline-none;
+    @apply block w-full resize-y rounded-none border border-rule bg-transparent p-4 font-mono text-[13.5px] leading-[1.7] text-fg placeholder:text-muted focus:border-fg focus:outline-none;
   }
 
   .btn {
-    @apply cursor-pointer border border-white/30 px-3 py-1.5 leading-none text-paper transition-colors hover:border-paper hover:bg-paper hover:text-ink active:opacity-80 disabled:cursor-default disabled:opacity-35 disabled:hover:border-white/30 disabled:hover:bg-transparent disabled:hover:text-paper;
+    @apply cursor-pointer border border-rule px-3 py-1.5 font-mono text-[13px] leading-none text-fg transition-colors hover:border-fg hover:bg-fg hover:text-bg active:opacity-80 disabled:cursor-default disabled:opacity-40 disabled:hover:border-rule disabled:hover:bg-transparent disabled:hover:text-fg;
+  }
+
+  /* The header button shows the theme you would switch to. */
+  .to-light {
+    display: none;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .to-light {
+      display: block;
+    }
+    :root:not([data-theme="light"]) .to-dark {
+      display: none;
+    }
+  }
+
+  :root[data-theme="dark"] .to-light {
+    display: block;
+  }
+
+  :root[data-theme="dark"] .to-dark {
+    display: none;
+  }
+
+  :root[data-theme="light"] .to-dark {
+    display: block;
+  }
+
+  #tagline s {
+    color: var(--muted);
+    text-decoration-thickness: 1px;
+  }
+
+  /* Dates, tags, nav: the small mono details that hold the layout together. */
+  .detail {
+    @apply font-mono text-[13px] text-muted;
   }
 }
 
@@ -80,4 +140,40 @@
   50% {
     opacity: 0;
   }
+}
+
+/* Prose colors follow the theme. Unlayered, so this beats the typography
+   plugin's own defaults. */
+.prose {
+  --tw-prose-body: var(--fg);
+  --tw-prose-headings: var(--fg);
+  --tw-prose-links: var(--fg);
+  --tw-prose-bold: var(--fg);
+  --tw-prose-counters: var(--muted);
+  --tw-prose-bullets: var(--rule);
+  --tw-prose-hr: var(--rule);
+  --tw-prose-quotes: var(--fg);
+  --tw-prose-quote-borders: var(--rule);
+  --tw-prose-captions: var(--muted);
+  --tw-prose-code: var(--fg);
+  --tw-prose-pre-code: var(--fg);
+  --tw-prose-pre-bg: var(--shade);
+  --tw-prose-th-borders: var(--rule);
+  --tw-prose-td-borders: var(--rule);
+}
+
+/* Shiki puts the light theme in inline styles and the dark one in custom
+   properties, so the dark rules need !important to win. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .astro-code,
+  :root:not([data-theme="light"]) .astro-code span {
+    color: var(--shiki-dark) !important;
+    background-color: var(--shiki-dark-bg) !important;
+  }
+}
+
+:root[data-theme="dark"] .astro-code,
+:root[data-theme="dark"] .astro-code span {
+  color: var(--shiki-dark) !important;
+  background-color: var(--shiki-dark-bg) !important;
 }

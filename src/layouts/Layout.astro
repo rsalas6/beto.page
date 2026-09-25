@@ -1,5 +1,6 @@
 ---
 import "@fontsource-variable/newsreader";
+import "@fontsource-variable/outfit";
 import "@fontsource/ibm-plex-mono/400.css";
 import "@fontsource/ibm-plex-mono/400-italic.css";
 import "@fontsource/ibm-plex-mono/500.css";
@@ -54,23 +55,68 @@ const nav = [
     <meta property="og:image:alt" content={title ?? SITE.name} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content={ogImage} />
-    <meta name="theme-color" content="#111111" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#faf8f4" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#14130f" />
+    <script is:inline>
+      // Runs before paint so the saved theme doesn't flash the wrong one.
+      try {
+        const saved = localStorage.getItem("theme");
+        if (saved) document.documentElement.dataset.theme = saved;
+      } catch {}
+    </script>
   </head>
   <body>
-    <div class="px-6 py-10 sm:px-18 sm:py-12">
-      <header>
-        <a
-          href="/"
-          class="font-serif text-[20px] no-underline hover:underline"
+    <div class="mx-auto flex min-h-screen max-w-[46rem] flex-col px-6 py-10 sm:py-14">
+      <header class="flex items-baseline justify-between gap-6">
+        <a href="/" class="font-serif text-[19px] no-underline hover:underline"
           >roberto salas</a
         >
+        <nav class="detail flex items-center gap-5">
+          {
+            nav.map((item) => (
+              <a href={item.href} class="no-underline hover:text-fg">
+                {item.label}
+              </a>
+            ))
+          }
+          <button
+            id="theme-toggle"
+            type="button"
+            class="cursor-pointer text-muted transition-colors hover:text-fg"
+            aria-label="Switch between light and dark"
+            title="Switch between light and dark"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              class="size-[18px]"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <g class="to-light">
+                <circle cx="12" cy="12" r="4" />
+                <path
+                  d="M12 3v1M12 20v1M3 12h1M20 12h1M5.6 5.6l.7.7M17.7 17.7l.7.7M5.6 18.4l.7-.7M17.7 6.3l.7-.7"
+                />
+              </g>
+              <g class="to-dark">
+                <path
+                  d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446A9 9 0 1 1 12 2.992z"
+                />
+              </g>
+            </svg>
+          </button>
+        </nav>
       </header>
 
-      <main class="mt-20 sm:mt-24">
+      <main class="mt-24 grow sm:mt-32">
         <slot />
       </main>
 
-      <footer class="mt-16 max-w-xl">
+      <footer class="mt-28 text-center">
         <p class="text-rule" aria-hidden="true">— — —</p>
         <p class="mt-10">
           Say hi.<br />
@@ -78,20 +124,21 @@ const nav = [
             >{SITE.email.replace("@", " [at] ")}</a
           ><span class="cursor-block" aria-hidden="true"></span>
         </p>
-        <nav class="mt-16 flex items-baseline justify-between gap-8 text-muted">
-          <span>beto.page · {year}</span>
-          <span class="flex gap-6">
-            {
-              nav.map((item) => (
-                <a href={item.href} class="no-underline hover:text-paper">
-                  {item.label}
-                </a>
-              ))
-            }
-          </span>
-        </nav>
+        <p class="detail mt-12">beto.page · {year}</p>
       </footer>
       <script is:inline>
+        // The toggle remembers your choice; without it the system decides.
+        const root = document.documentElement;
+        document.getElementById("theme-toggle").addEventListener("click", () => {
+          const dark = matchMedia("(prefers-color-scheme: dark)").matches;
+          const current = root.dataset.theme || (dark ? "dark" : "light");
+          const next = current === "dark" ? "light" : "dark";
+          root.dataset.theme = next;
+          try {
+            localStorage.setItem("theme", next);
+          } catch {}
+        });
+
         // The address is never in the HTML; it's rebuilt here to keep scrapers away.
         const el = document.getElementById("email");
         const email = atob(el.dataset.e).split("").reverse().join("");

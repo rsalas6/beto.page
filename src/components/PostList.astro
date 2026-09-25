@@ -8,7 +8,7 @@ interface Props {
 const { posts } = Astro.props;
 ---
 
-<ul class="max-w-xl space-y-5">
+<ul class="mx-auto max-w-[34rem] space-y-5">
   {
     posts.map((post) => (
       <li class="flex items-baseline justify-between gap-8">
@@ -19,7 +19,7 @@ const { posts } = Astro.props;
         )}
         <time
           datetime={post.data.date.toISOString()}
-          class="shrink-0 text-muted tabular-nums"
+          class="detail shrink-0 tabular-nums"
         >
           {shortDate(post.data.date)}
         </time>

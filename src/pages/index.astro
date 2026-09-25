@@ -30,10 +30,12 @@ const education = [...resume.education]
 ---
 
 <Layout>
-  <h1 class="font-serif text-[40px] leading-[1.08] tracking-[-0.02em] sm:text-[64px]">
+  <h1
+    class="text-center font-serif text-[40px] leading-[1.12] font-light tracking-[-0.01em] sm:text-[54px]"
+  >
     Hi, I'm Beto.
     <br />
-    <span id="tagline">{SITE.taglines[0]}</span>
+    <span id="tagline" set:html={SITE.taglines[0]} />
   </h1>
   <script is:inline define:vars={{ taglines: SITE.taglines }}>
     // Pick a different tagline than the last one this tab saw.
@@ -43,12 +45,12 @@ const education = [...resume.education]
     } catch {}
     let i = Math.floor(Math.random() * taglines.length);
     if (i === last) i = (i + 1) % taglines.length;
-    document.getElementById("tagline").textContent = taglines[i];
+    document.getElementById("tagline").innerHTML = taglines[i];
     try {
       sessionStorage.setItem("tagline", String(i));
     } catch {}
   </script>
-  <p class="mt-12 max-w-xl">
+  <p class="mx-auto mt-10 max-w-[42ch] text-center text-muted">
     Currently at{" "}
     <a href="https://www.micro1.ai/" target="_blank" rel="noopener">
       micro1
@@ -57,7 +59,7 @@ const education = [...resume.education]
     experiments, and the occasional glorious failure.
   </p>
 
-  <ul class="mt-12 flex gap-6">
+  <ul class="mt-12 flex justify-center gap-7">
     {SITE.links.map((link) => (
       <li>
         <a
@@ -66,7 +68,7 @@ const education = [...resume.education]
           rel={"newTab" in link ? "noopener" : undefined}
           aria-label={link.label}
           title={link.label}
-          class="block text-muted no-underline transition-colors hover:text-paper"
+          class="block text-muted no-underline transition-colors hover:text-fg"
         >
           <svg
             viewBox="0 0 24 24"
@@ -89,19 +91,19 @@ const education = [...resume.education]
 
   {posts.length > 0 && (
     <>
-      <p class="mt-16 text-rule" aria-hidden="true">
+      <p class="mt-20 text-center text-rule" aria-hidden="true">
         — — —
       </p>
-      <section class="mt-16" aria-label="Blog">
-        <h2 class="font-serif text-[22px] italic">Blog</h2>
-        <div class="mt-6">
+      <section class="mt-20" aria-label="Blog">
+        <h2 class="text-center font-serif text-[24px] italic">Blog</h2>
+        <div class="mt-8">
           <PostList posts={posts} />
         </div>
       </section>
     </>
   )}
 
-  <p class="mt-16 text-rule" aria-hidden="true">
+  <p class="mt-20 text-center text-rule" aria-hidden="true">
     — — —
   </p>
   <Timeline title="Work" items={work} />

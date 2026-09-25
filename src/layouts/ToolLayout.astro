@@ -10,13 +10,13 @@ const { title, description } = Astro.props;
 ---
 
 <Layout title={title} description={description}>
-  <p><a href="/tools/" class="text-muted no-underline hover:text-paper">← tools</a></p>
+  <p class="detail text-center"><a href="/tools/" class="no-underline hover:text-fg">← tools</a></p>
   <h1
-    class="mt-8 font-serif text-[40px] leading-[1.1] tracking-[-0.02em] sm:text-[56px]"
+    class="mt-8 text-center font-serif text-[36px] leading-[1.15] font-light tracking-[-0.01em] sm:text-[44px]"
   >
     {title}
   </h1>
-  <p class="mt-6 max-w-xl text-muted">{description}</p>
+  <p class="mx-auto mt-6 max-w-[42ch] text-center text-muted">{description}</p>
   <div class="mt-12">
     <slot />
   </div>
